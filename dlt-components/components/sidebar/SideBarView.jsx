@@ -6,7 +6,7 @@ const SideBarView = (props) => {
     return (
         <Menu mode="vertical" theme="light">
             <Menu.Item key="home">
-                <Link to="/">Home</Link>
+                <Link to="/">JobList</Link>
             </Menu.Item>
             <Menu.Item key="profile">
                 <Link to="/profile">Profile</Link>
