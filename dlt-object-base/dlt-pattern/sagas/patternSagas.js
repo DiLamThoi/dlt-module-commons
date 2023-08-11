@@ -3,11 +3,11 @@ import { getValue, setValue } from '../slice/patternSlice';
 
 /** Handle Saga action */
 function* doSetValuePatternSaga() {
-    yield put(getValue())
+    yield put(getValue());
 }
 
 function* doGetValuePatternSaga() {
-    yield put(setValue())
+    yield put(setValue());
 }
 
 /** Listen Saga action */

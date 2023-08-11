@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import SideBarView from './SideBarView';
 
-const mapStateToProps = () => {};
+const mapStateToProps = () => ({});
 
 const SideBarContainer = connect(mapStateToProps, null)(SideBarView);
 
