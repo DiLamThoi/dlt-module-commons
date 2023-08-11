@@ -10,6 +10,7 @@ const patternSlice = createSlice({
   reducers: {
     setValue: (state, action) => {
         state.value = action.payload;
+        return state;
     },
     getValue: (state) => {
         return state.value;

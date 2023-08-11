@@ -1,11 +1,14 @@
 import { createAction } from "@reduxjs/toolkit";
 
 export const JOB_ACTION = {
-    GET_JOB: "jobAction.getJob",
+    CREATE_JOB: "jobAction.createJob",
 }
 
 const jobAction = {
-    getJob: (jobId) => createAction(JOB_ACTION.GET_JOB)
+    createJob: (jobId, data) => {
+        const action = createAction(JOB_ACTION.CREATE_JOB)
+        return action({ id: jobId, data })
+    }
 }
 
 export default jobAction;

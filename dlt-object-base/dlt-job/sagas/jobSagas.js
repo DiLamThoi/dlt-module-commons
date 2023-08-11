@@ -1,23 +1,24 @@
 import { all, put, takeEvery } from "redux-saga/effects";
 import { JOB_ACTION } from "../actions/jobActions";
-import { getJob } from "../slice/jobSlice";
+import { addJob } from "../slice/jobSlice";
 
 
 /** Handle Saga action */
-function* doGetJobSaga(payload) {
-    console.log(payload);
-    yield put(getJob);
+function* docreateJobSaga(action) {
+    const { payload } = action;
+    // TruongNBN: thực hiện thay đổi store, sau khi tạo server sẽ làm chuẩn luồng fetch
+    yield put(addJob(payload));
 }
 
 
 /** Listen Saga action */
-function* watchGetJobSaga() {
-    yield takeEvery(JOB_ACTION.GET_JOB, doGetJobSaga)
+function* watchcreateJobSaga() {
+    yield takeEvery(JOB_ACTION.CREATE_JOB, docreateJobSaga)
 }
 
 /** Export Sagas */
 const listSagas = [
-    watchGetJobSaga,
+    watchcreateJobSaga,
 ];
 
 const jobSagas = function* jobSagas() {
