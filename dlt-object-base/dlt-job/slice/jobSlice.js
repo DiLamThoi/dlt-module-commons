@@ -6,7 +6,7 @@ const jobSlice = createSlice({
     name: "Job",
     initialState,
     reducers: {
-        addJob: (state, action) => {
+        createJob: (state, action) => {
             const { id, data } = action.payload;
             state[id] = data;
             return state;
@@ -15,7 +15,7 @@ const jobSlice = createSlice({
 });
 
 export const {
-    addJob,
+    createJob,
 } = jobSlice.actions
 
 const jobReducer = jobSlice.reducer;

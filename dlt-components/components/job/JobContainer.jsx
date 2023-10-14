@@ -1,23 +1,19 @@
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux';
 import JobView from './JobView';
-import jobAction from '../../../dlt-object-base/dlt-job/actions/jobActions';
 
-const JobController = (props) => {
-    const { jobId, createJob } = props;
+const JobContainer = (props) => {
+    const { jobId } = props;
+
+    const jobData = useSelector((state) => state.Job[jobId]);
 
     return (
-        <JobView />
+        <JobView jobData={jobData}/>
     )
 }
 
-const mapStateToProps = () => ({});
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        createJob: (jobId, data) => dispatch(jobAction.createJob(jobId, data))
-    }
+JobContainer.propTypes = {
+    jobId: PropTypes.string,
 }
-
-const JobContainer = connect(mapStateToProps,mapDispatchToProps)(JobController);
 
 export default JobContainer;
