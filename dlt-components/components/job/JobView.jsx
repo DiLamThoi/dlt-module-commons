@@ -14,7 +14,7 @@ const JobView = (props) => {
         hours,
         startTime,
         applicationDeadline,
-        companyId,
+        employerId,
     } = jobData
 
     return (
