@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import JobView from './JobView';
 import jobSelector from '../../../dlt-object-base/dlt-job/selector/jobSelector';
@@ -10,11 +10,11 @@ const JobContainer = (props) => {
 
     return (
         <JobView jobData={jobData}/>
-    )
-}
+    );
+};
 
 JobContainer.propTypes = {
     jobId: PropTypes.string,
-}
+};
 
 export default JobContainer;

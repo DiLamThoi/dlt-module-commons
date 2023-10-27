@@ -3,12 +3,12 @@ import { all } from 'redux-saga/effects';
 import jobSagas from '../../dlt-job/sagas/jobSagas';
 
 const listRootSagas = [
-  jobSagas,
-  // Add other Sagas here
-]
+    jobSagas,
+    // Add other Sagas here
+];
 
 const rootSaga =  function* rootSaga() {
-  yield all(listRootSagas.map((saga) => saga()));
-}
+    yield all(listRootSagas.map((saga) => saga()));
+};
 
 export default rootSaga;

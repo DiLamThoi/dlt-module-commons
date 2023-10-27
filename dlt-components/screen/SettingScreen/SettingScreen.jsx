@@ -1,6 +1,6 @@
 
 const SettingScreen = () => {
-  return <div>SettingScreen Page</div>;
+    return <div>SettingScreen Page</div>;
 };
 
 export default SettingScreen;

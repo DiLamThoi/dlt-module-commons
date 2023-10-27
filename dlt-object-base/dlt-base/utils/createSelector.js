@@ -6,6 +6,6 @@ const createSelector = (baseSelector, statePath=[]) => (
         final[key] = (state, ...args) => baseSelector[key](_.get(state, statePath, state), ...args);
         return final;
     }, {})
-)
+);
 
 export default createSelector;

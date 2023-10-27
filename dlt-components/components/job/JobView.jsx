@@ -1,4 +1,3 @@
-
 const JobView = (props) => {
     const { jobData } = props;
 
@@ -15,7 +14,7 @@ const JobView = (props) => {
         startTime,
         applicationDeadline,
         employerId,
-    } = jobData
+    } = jobData;
 
     return (
         <div style={{ display: 'flex' }}>
@@ -27,7 +26,7 @@ const JobView = (props) => {
                 {salary}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default JobView;

@@ -4,7 +4,7 @@ const { Sider } = Layout;
 
 const SideBarView = (props) => {
     return (
-        <Menu mode="vertical" theme="light" style={{ padding: "24px 8px", gap: 8 }}>
+        <Menu mode="vertical" theme="light" style={{ padding: '24px 8px', gap: 8 }}>
             <Menu.Item key="home">
                 <Link to="/">JobList</Link>
             </Menu.Item>
@@ -16,6 +16,6 @@ const SideBarView = (props) => {
             </Menu.Item>
         </Menu>
     );
-}
+};
 
 export default SideBarView;
