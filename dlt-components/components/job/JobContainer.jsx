@@ -1,7 +1,9 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import jobSelector from '@dlt-module-job/selector/jobSelector';
+
 import JobView from './JobView';
-import jobSelector from '../../../dlt-object-base/dlt-job/selector/jobSelector';
 
 const JobContainer = (props) => {
     const { jobId } = props;

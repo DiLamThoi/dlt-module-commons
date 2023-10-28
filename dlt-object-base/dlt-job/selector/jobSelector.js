@@ -1,7 +1,7 @@
 // import { createSelector } from 'reselect';
-import StoreConfig from '../../storeConfig';
-import objectSelector from '../../dlt-base/object/objectSelector';
-import createSelector from '../../dlt-base/utils/createSelector';
+import StoreConfig from '@dlt-object-base/storeConfig';
+import objectSelector from '@dlt-module-base/object/objectSelector';
+import createSelector from '@dlt-module-base/utils/createSelector';
 
 const statePath = [StoreConfig.job];
 

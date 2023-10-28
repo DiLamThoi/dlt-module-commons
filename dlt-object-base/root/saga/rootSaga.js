@@ -1,6 +1,7 @@
 import { all } from 'redux-saga/effects';
+
 /** Module sagas */
-import jobSagas from '../../dlt-job/sagas/jobSagas';
+import jobSagas from '@dlt-module-job/sagas/jobSagas';
 
 const listRootSagas = [
     jobSagas,

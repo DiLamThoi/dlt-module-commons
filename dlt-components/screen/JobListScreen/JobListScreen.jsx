@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import JobContainer from '../../components/job/JobContainer';
-import jobAction from '../../../dlt-object-base/dlt-job/actions/jobActions';
+import JobContainer from '@dlt-components/components/job/JobContainer';
+import jobAction from '@dlt-object-base/dlt-job/actions/jobActions';
 
 const JobListScreen = () => {
     const jobIds = ['job1', 'job2', 'job3'];
