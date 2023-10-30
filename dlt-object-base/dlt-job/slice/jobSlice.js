@@ -10,8 +10,8 @@ const jobSlice = createSlice({
             const { id, data } = action.payload;
             state[id] = data;
             return state;
-        }
-    }
+        },
+    },
 });
 
 export const {

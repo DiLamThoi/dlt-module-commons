@@ -1,9 +1,9 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 const { Sider } = Layout;
 
 const SideBarView = (props) => {
-
     const menuItems = [
         { key: 'home', title: 'Danh sách công việc', path: '/' },
         { key: 'profile', title: 'Hồ sơ', path: '/profile' },
@@ -12,13 +12,11 @@ const SideBarView = (props) => {
 
     return (
         <Menu mode="vertical" theme="light" style={{ padding: '24px 8px', gap: 8 }}>
-            {menuItems.map((item) => {
-                return (
-                    <Menu.Item key={item.key}>
-                        <Link to={item.path}>{item.title}</Link>
-                    </Menu.Item>
-                );
-            })}
+            {menuItems.map((item) => (
+                <Menu.Item key={item.key}>
+                    <Link to={item.path}>{item.title}</Link>
+                </Menu.Item>
+            ))}
         </Menu>
     );
 };

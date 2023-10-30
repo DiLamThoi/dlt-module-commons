@@ -1,21 +1,24 @@
+import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { Button, Typography, Form, Input, Checkbox } from 'antd';
 
 const LoginView = (props) => {
     const { onLogin } = props;
 
-    const onFinish = (values) => {
+    const onFinish = useCallback((values) => {
         onLogin(values.username, values.password);
-    };
-    const onFinishFailed = (errorInfo) => {};
+    }, [onLogin]);
+    const onFinishFailed = useCallback((errorInfo) => {}, []);
 
     return (
-        <div style={{
-            backgroundColor: '#fff',
-            minWidth: 400,
-            borderRadius: 8,
-            paddingBottom: 14,
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1)'
-        }}>
+        <div
+            style={{
+                backgroundColor: '#fff',
+                minWidth: 400,
+                borderRadius: 8,
+                paddingBottom: 14,
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1)',
+            }}>
             <div style={{ textAlign: 'center' }}>
                 <Typography.Title level={2}>Đi làm thui!!!</Typography.Title>
             </div>
@@ -26,20 +29,26 @@ const LoginView = (props) => {
                 autoComplete="off"
             >
                 <Form.Item name="username">
-                    <Input size="large" placeholder='Tài khoản' />
+                    <Input size="large" placeholder="Tài khoản" />
                 </Form.Item>
                 <Form.Item name="password">
-                    <Input.Password size="large" placeholder='Mật khâu' />
+                    <Input.Password size="large" placeholder="Mật khâu" />
                 </Form.Item>
                 {/* <Form.Item name="remember">
                     <Checkbox>Remember me</Checkbox>
                 </Form.Item> */}
                 <Form.Item>
-                    <Button size="large"  type="primary" htmlType="submit" style={{ width: '100%' }}>Đăng nhập</Button>
+                    <Button size="large" type="primary" htmlType="submit" style={{ width: '100%' }}>Đăng nhập</Button>
                 </Form.Item>
             </Form>
         </div>
     );
 };
+
+LoginView.propTypes = {
+    onLogin: PropTypes.func,
+};
+
+LoginView.defaultProps = {};
 
 export default LoginView;

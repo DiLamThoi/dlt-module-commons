@@ -1,7 +1,5 @@
-// import React, { useState } from 'react';
+import React from 'react';
 
-const ProfileScreen = () => {
-    return <div>ProfileScreen Page</div>;
-};
+const ProfileScreen = () => <div>ProfileScreen Page</div>;
 
 export default ProfileScreen;

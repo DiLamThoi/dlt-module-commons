@@ -1,6 +1,5 @@
+import React from 'react';
 
-const SettingScreen = () => {
-    return <div>SettingScreen Page</div>;
-};
+const SettingScreen = () => <div>SettingScreen Page</div>;
 
 export default SettingScreen;

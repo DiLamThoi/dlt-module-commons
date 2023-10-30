@@ -5,7 +5,7 @@ import StoreConfig from '@dlt-object-base/storeConfig';
 import jobReducer from '@dlt-module-job/slice/jobSlice';
 
 const rootReducer = combineReducers({
-    [StoreConfig.job]: jobReducer
+    [StoreConfig.job]: jobReducer,
     // [StoreConfig.job]: jobReducer
 });
 

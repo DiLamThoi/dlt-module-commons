@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const get = (state, id) =>  state[id];
+const get = (state, id) => state[id];
 
 const objectSelector = {
     get,

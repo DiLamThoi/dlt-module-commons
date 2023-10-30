@@ -13,7 +13,7 @@ const jobAction = {
     fetchJob: (userId) => {
         const action = createAction(JOB_ACTION.FETCH_JOB);
         return action({ userId });
-    }
+    },
 };
 
 export default jobAction;

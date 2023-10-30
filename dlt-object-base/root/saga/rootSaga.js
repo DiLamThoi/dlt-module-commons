@@ -8,7 +8,7 @@ const listRootSagas = [
     // Add other Sagas here
 ];
 
-const rootSaga =  function* rootSaga() {
+const rootSaga = function* rootSaga() {
     yield all(listRootSagas.map((saga) => saga()));
 };
 
