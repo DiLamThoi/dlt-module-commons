@@ -2,9 +2,11 @@ import React, { useCallback } from 'react';
 import axios from 'axios';
 import { useSignIn } from 'react-auth-kit';
 import LoginView from './LoginView';
+import { useNavigate } from 'react-router-dom';
 
 const LoginContainer = () => {
     const signIn = useSignIn();
+    const navigate = useNavigate();
 
     const onLogin = useCallback(async (userName, password) => {
         const data = { userName, password };
@@ -18,8 +20,13 @@ const LoginContainer = () => {
         }).catch((err) => {});
     }, [signIn]);
 
+    const navigateRegister = useCallback(() => {
+        navigate('/register');
+    }, [navigate]);
+    
+
     return (
-        <LoginView onLogin={onLogin} />
+        <LoginView onLogin={onLogin} navigateRegister={navigateRegister} />
     );
 };
 
