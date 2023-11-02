@@ -12,11 +12,9 @@ const JobListScreen = () => {
     }, [dispatch]);
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '24px 16px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '8' }}>
             {jobIds.map((jobId) => (
-                <div key={jobId} style={{ width: '100%', padding: '12px 8px', backgroundColor: '#fff', borderRadius: 10 }}>
-                    <JobContainer jobId={jobId}/>
-                </div>
+                <JobContainer key={jobId} jobId={jobId}/>
             ))}
         </div>
     );

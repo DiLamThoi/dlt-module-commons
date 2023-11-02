@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'antd';
 
 const JobView = (props) => {
     const { jobData } = props;
@@ -20,15 +21,15 @@ const JobView = (props) => {
     } = jobData;
 
     return (
-        <div style={{ display: 'flex' }}>
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+        <Button style={{ width: '100%', padding: '12px 8px', backgroundColor: '#fff', borderRadius: 10 }}>
+            {/* <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                 <span>{title}</span>
                 <span>{description}</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', backgroundColor: 'pink' }}>
                 {salary}
-            </div>
-        </div>
+            </div> */}
+        </Button>
     );
 };
 
