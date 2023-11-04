@@ -21,14 +21,14 @@ const JobView = (props) => {
     } = jobData;
 
     return (
-        <Button style={{ width: '100%', padding: '12px 8px', backgroundColor: '#fff', borderRadius: 10 }}>
-            {/* <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+        <Button style={{ display: 'block', width: '100%', height: '100px', padding: '12px 8px', backgroundColor: '#fff', borderRadius: 10 }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                 <span>{title}</span>
                 <span>{description}</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', backgroundColor: 'pink' }}>
                 {salary}
-            </div> */}
+            </div>
         </Button>
     );
 };
