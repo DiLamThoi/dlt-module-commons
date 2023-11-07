@@ -10,7 +10,7 @@ const JobContainer = (props) => {
 
     const jobData = useSelector((state) => jobSelector.get(state, jobId));
 
-    return (
+    return jobData && (
         <JobView jobData={jobData}/>
     );
 };

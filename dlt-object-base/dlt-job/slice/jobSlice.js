@@ -1,14 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-const initialState = {};
+import initialObjectState from '@dlt-object-base/dlt-base/object/initialObjectState';
 
 const jobSlice = createSlice({
     name: 'Job',
-    initialState,
+    initialState: initialObjectState,
     reducers: {
         createJob: (state, action) => {
             const { id, data } = action.payload;
-            state[id] = data;
+            if (!state.items[id]) {
+                state.items[id] = data;
+                state.itemIds.push(id);
+            }
             return state;
         },
     },

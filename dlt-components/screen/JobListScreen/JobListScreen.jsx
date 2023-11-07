@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import JobContainer from '@dlt-components/components/job/JobContainer';
 import jobAction from '@dlt-object-base/dlt-job/actions/jobActions';
 import { Col, Row } from 'antd';
+import jobSelector from '@dlt-object-base/dlt-job/selector/jobSelector';
 
 const JobListScreen = () => {
-    const jobIds = ['job1', 'job2', 'job3', 'job4', 'job5' ];
     const dispatch = useDispatch();
+    const jobIds = useSelector((state) => jobSelector.getItemIds(state));
 
     useEffect(() => {
         dispatch(jobAction.fetchJob('meId'));
