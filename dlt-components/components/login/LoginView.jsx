@@ -1,13 +1,25 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Typography, Form, Input, Checkbox, Divider } from 'antd';
-import { Link } from 'react-router-dom';
+import { Button, Typography, Form, Input, Divider, Select } from 'antd';
+import { LoginOutlined } from '@ant-design/icons';
+import { ROLE_LOGIN } from './constants/loginConstants';
 
 const LoginView = (props) => {
     const { onLogin, navigateRegister } = props;
 
+    const RoleOptions = useMemo(() => ([
+        {
+            value: ROLE_LOGIN.USER,
+            label: 'Người tìm việc',
+        },
+        {
+            value: ROLE_LOGIN.EMPLOYER,
+            label: 'Nhà tuyển dụng',
+        },
+    ]), []);
+
     const onFinish = useCallback((values) => {
-        onLogin(values.username, values.password);
+        onLogin(values.username, values.password, values.role);
     }, [onLogin]);
 
     const onFinishFailed = useCallback((errorInfo) => {}, []);
@@ -23,29 +35,42 @@ const LoginView = (props) => {
             }}
         >
             <div style={{ textAlign: 'center' }}>
-                <Typography.Title level={3}>Đi làm thôi</Typography.Title>
+                <Typography.Title level={3} style={{ color: '#42b72a' }}>
+                    <LoginOutlined style={{ marginRight: 8 }} />
+                    Đăng nhập
+                </Typography.Title>
             </div>
             <Form
+                size="large"
                 style={{ padding: '0px 8px' }}
+                initialValues={{
+                    role: ROLE_LOGIN.USER,
+                }}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
             >
+                <Form.Item
+                    name="role"
+                    label={'Vai trò đăng nhập'}
+                >
+                    <Select size="middle" options={RoleOptions} />
+                </Form.Item>
                 <Form.Item name="username">
-                    <Input size="large" placeholder="Tài khoản" />
+                    <Input placeholder="Tài khoản" />
                 </Form.Item>
                 <Form.Item name="password">
-                    <Input.Password size="large" placeholder="Mật khẩu" />
+                    <Input.Password placeholder="Mật khẩu" />
                 </Form.Item>
                 {/* <Form.Item name="remember">
                     <Checkbox>Remember me</Checkbox>
                 </Form.Item> */}
                 <Form.Item>
-                    <Button size="large" type="primary" htmlType="submit" style={{ width: '100%' }}>Đăng nhập</Button>
+                    <Button type="primary" htmlType="submit" style={{ width: '100%' }}>Đăng nhập</Button>
                 </Form.Item>
                 <Divider />
                 <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button size="large" type="primary" style={{ backgroundColor: '#42b72a' }} onClick={navigateRegister}>
+                    <Button type="primary" style={{ backgroundColor: '#42b72a' }} onClick={navigateRegister}>
                         Tạo tài khoản mới
                     </Button>
                 </Form.Item>

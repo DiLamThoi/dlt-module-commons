@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+// Components
 import { Button } from 'antd';
 import { HeartOutlined } from '@ant-design/icons';
+import EmployerLogoContainer from '@dlt-components/components/employer/employerLogo/EmployerLogoContainer';
+import EmployerNameContainer from '@dlt-components/components/employer/employerName/EmployerNameContainer';
+import EmployerAddressContainer from '@dlt-components/components/employer/employerAddress/EmployerAddressContainer';
 
 const JobView = (props) => {
     const { jobData } = props;
@@ -31,14 +36,22 @@ const JobView = (props) => {
     const jobSalary = `${salaryMin}-${salaryMax} ${salaryUnit}`;
 
     return (
-        <Button style={{ width: '100%', height: 'max-content', padding: '12px 8px', backgroundColor: '#fff' }}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-                <span style={{ flex: '1', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{title}</span>
-                <Button type="text" icon={<HeartOutlined />} />
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', backgroundColor: 'pink' }}>
-                {jobSalary}
+        <Button style={{ width: '100%', minWidth: 300, height: 'max-content', padding: '12px 8px' }}>
+            <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'start' }}>
+                <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
+                    <text style={{ flex: '1' }}>{title}</text>
+                    <Button type="text" icon={<HeartOutlined />} />
+                </div>
+                <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 8 }}>
+                    <span style={{ display: 'block', width: 100 }}>
+                        <EmployerLogoContainer employerId={employerId} width={100} />
+                    </span>
+                    <span style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                        <EmployerNameContainer employerId={employerId} />
+                        <text style={{ }}>{jobSalary}</text>
+                        <EmployerAddressContainer employerId={employerId} style={{ }}/>
+                    </span>
+                </div>
             </div>
         </Button>
     );
@@ -46,7 +59,7 @@ const JobView = (props) => {
 
 JobView.propTypes = {
     jobData: PropTypes.shape({
-        id: PropTypes.string,
+        id: PropTypes.string.isRequired,
         title: PropTypes.string,
         levelId: PropTypes.string,
         employerId: PropTypes.string,

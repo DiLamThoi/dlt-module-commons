@@ -30,6 +30,7 @@ const RegisterView = (props) => {
                 form={form}
                 style={{ padding: '0px 8px' }}
                 onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
                 autoComplete="off"
             >
                 <Row gutter={16}>
