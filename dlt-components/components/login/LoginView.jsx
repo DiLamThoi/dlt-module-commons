@@ -43,9 +43,7 @@ const LoginView = (props) => {
             <Form
                 size="large"
                 style={{ padding: '0px 8px' }}
-                initialValues={{
-                    role: ROLE_LOGIN.USER,
-                }}
+                initialValues={{ role: ROLE_LOGIN.USER }}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
