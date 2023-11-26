@@ -2,11 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import initialObjectState from '@dlt-object-base/dlt-base/object/initialObjectState';
 import StoreConfig from '@dlt-object-base/storeConfig';
 
-const jobSlice = createSlice({
-    name: StoreConfig.job,
+const employerSlice = createSlice({
+    name: StoreConfig.employer,
     initialState: initialObjectState,
     reducers: {
-        createJob: (state, action) => {
+        createEmployer: (state, action) => {
             const { id, data } = action.payload;
             if (!state.items[id]) {
                 state.items[id] = data;
@@ -18,9 +18,9 @@ const jobSlice = createSlice({
 });
 
 export const {
-    createJob,
-} = jobSlice.actions;
+    createEmployer,
+} = employerSlice.actions;
 
-const jobReducer = jobSlice.reducer;
+const employerReducer = employerSlice.reducer;
 
-export default jobReducer;
+export default employerReducer;

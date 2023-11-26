@@ -9,7 +9,7 @@ import EmployerNameContainer from '@dlt-components/components/employer/employerN
 import EmployerAddressContainer from '@dlt-components/components/employer/employerAddress/EmployerAddressContainer';
 
 const JobView = (props) => {
-    const { jobData } = props;
+    const { data } = props;
 
     const { 
         id,
@@ -31,7 +31,7 @@ const JobView = (props) => {
         genderId,
         description,
         totalView,
-    } = jobData;
+    } = data;
 
     const jobSalary = `${salaryMin}-${salaryMax} ${salaryUnit}`;
 
@@ -58,7 +58,7 @@ const JobView = (props) => {
 };
 
 JobView.propTypes = {
-    jobData: PropTypes.shape({
+    data: PropTypes.shape({
         id: PropTypes.string.isRequired,
         title: PropTypes.string,
         levelId: PropTypes.string,

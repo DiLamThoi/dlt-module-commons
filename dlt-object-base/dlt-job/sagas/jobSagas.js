@@ -7,7 +7,7 @@ import axios from 'axios';
 function* doFetchJobSaga(action) {
     const { userId } = action.payload;
     try {
-        const response = yield call(axios.get, 'http://server.truongnbn.com:8080/jobs');
+        const response = yield call(axios.get, 'http://server.truongnbn.com:8080/job');
         const jobs = response.data;
         const jobIds = Object.keys(jobs);
         for (const jobId of jobIds) {

@@ -15,6 +15,7 @@ const RegisterContainer = () => {
 
     const onRegister = useCallback((role, data) => {
         axios.post('http://server.truongnbn.com:8080/register', { role, data }).then((res) => {
+            const { token, meId } = res.data;
             signIn({
                 token: res.data.token,
                 expiresIn: 3600,

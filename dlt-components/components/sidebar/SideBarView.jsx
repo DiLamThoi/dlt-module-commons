@@ -5,9 +5,10 @@ const { Sider } = Layout;
 
 const SideBarView = (props) => {
     const menuItems = [
-        { key: 'home', title: 'Danh sách công việc', path: '/' },
+        { key: 'jobs', title: 'Danh sách công việc', path: '/jobs' },
+        { key: 'employers', title: 'Nhà tuyển dụng', path: '/employers' },
         { key: 'profile', title: 'Hồ sơ', path: '/profile' },
-        { key: 'settings', title: 'Cài đặt', path: '/settings' },
+        // { key: 'settings', title: 'Cài đặt', path: '/settings' },
     ];
 
     return (
