@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import { Button } from 'antd';
+import { Button, theme } from 'antd';
 import { HeartOutlined } from '@ant-design/icons';
 import EmployerLogoContainer from '@dlt-components/components/employer/employerLogo/EmployerLogoContainer';
 import EmployerNameContainer from '@dlt-components/components/employer/employerName/EmployerNameContainer';
 import EmployerAddressContainer from '@dlt-components/components/employer/employerAddress/EmployerAddressContainer';
 
 const JobView = (props) => {
-    const { data } = props;
+    const { data, onFollowJob } = props;
 
     const { 
         id,
@@ -33,23 +33,49 @@ const JobView = (props) => {
         totalView,
     } = data;
 
+    const { token } = theme.useToken();
+
     const jobSalary = `${salaryMin}-${salaryMax} ${salaryUnit}`;
 
+    const onShowJobDetail = useCallback((e) => {
+        //
+    }, []);
+
+    const onClickFollowJobButton = useCallback((e) => {
+        onFollowJob();
+        e.stopPropagation();
+    }, [onFollowJob]);
+
     return (
-        <Button style={{ width: '100%', minWidth: 300, height: 'max-content', padding: '12px 8px' }}>
+        <Button
+            onClick={onShowJobDetail}
+            style={{
+                width: '100%',
+                minWidth: 300,
+                height: 'max-content',
+                paddingLeft: token.paddingContentHorizontalSM,
+                paddingRight: token.paddingContentHorizontalSM,
+                paddingTop: token.paddingContentVerticalSM,
+                paddingBottom: token.paddingContentVerticalSM,
+            }}
+        >
             <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'start' }}>
                 <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
-                    <text style={{ flex: '1' }}>{title}</text>
-                    <Button type="text" icon={<HeartOutlined />} />
+                    <text style={{ flex: '1', color: token.colorTextSecondary, fontWeight: token.fontWeightStrong }}>{title}</text>
+                    <Button type="text" icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
                 </div>
                 <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 8 }}>
                     <span style={{ display: 'block', width: 100 }}>
                         <EmployerLogoContainer employerId={employerId} width={100} height={100} style={{ objectFit: 'contain' }} />
                     </span>
                     <span style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                        <EmployerNameContainer employerId={employerId} />
-                        <text style={{ }}>{jobSalary}</text>
-                        <EmployerAddressContainer employerId={employerId}/>
+                        <span style={{ color: token.colorTextSecondary }}>
+                            <EmployerNameContainer employerId={employerId} />
+                        </span>
+                        <span style={{ color: token.colorTextSecondary }}>{jobSalary}</span>
+                        <span style={{ color: token.colorTextSecondary }}>
+                            <EmployerAddressContainer employerId={employerId}/>
+                        </span>
                     </span>
                 </div>
             </div>
@@ -79,8 +105,11 @@ JobView.propTypes = {
         description: PropTypes.string,
         totalView: PropTypes.number,
     }),
+    onFollowJob: PropTypes.func,
 };
 
-JobView.defaultProps = {};
+JobView.defaultProps = {
+    onFollowJob: () => undefined,
+};
 
 export default JobView;
