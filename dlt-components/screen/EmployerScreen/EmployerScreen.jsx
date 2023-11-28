@@ -21,7 +21,7 @@ const EmployerScreen = () => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: 8 }}>
             <Row gutter={[16, 16]}>
                 {employerIds.map((employerId) => (
-                    <Col key={employerId} xs={24} sm={24} md={24} lg={12} xl={8}>
+                    <Col key={employerId} xs={24} sm={24} md={12} lg={8} xl={6}>
                         <EmployerContainer key={employerId} employerId={employerId}/>
                     </Col>
                 ))}

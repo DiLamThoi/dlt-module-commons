@@ -11,11 +11,12 @@ import EmployerAddressContainer from '@dlt-components/components/employer/employ
 const EmployerView = (props) => {
     const { data } = props;
 
-    const { name, status, logo, address } = data;
+    const { id, name, status, logo, address } = data;
 
     return (
-        <Button style={{ width: '100%', minWidth: 300, height: 'max-content', padding: '12px 8px' }}>
-            {data.id}
+        <Button style={{ width: '100%', flexDirection: 'column', minWidth: 200, height: 'max-content', padding: '12px 8px' }}>
+            <EmployerLogoContainer employerId={id} width={100} height={100} style={{ objectFit: 'contain' }} />
+            {/* <EmployerNameContainer employerId={id} /> */}
         </Button>
     );
 };

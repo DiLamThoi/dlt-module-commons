@@ -44,12 +44,12 @@ const JobView = (props) => {
                 </div>
                 <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 8 }}>
                     <span style={{ display: 'block', width: 100 }}>
-                        <EmployerLogoContainer employerId={employerId} width={100} />
+                        <EmployerLogoContainer employerId={employerId} width={100} height={100} style={{ objectFit: 'contain' }} />
                     </span>
                     <span style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
                         <EmployerNameContainer employerId={employerId} />
                         <text style={{ }}>{jobSalary}</text>
-                        <EmployerAddressContainer employerId={employerId} style={{ }}/>
+                        <EmployerAddressContainer employerId={employerId}/>
                     </span>
                 </div>
             </div>

@@ -5,9 +5,9 @@ const EmployerAddressView = (props) => {
     const { address, style } = props;
 
     return (
-        <text style={style}>
+        <span style={style}>
             {address}
-        </text>
+        </span>
     );
 };
 

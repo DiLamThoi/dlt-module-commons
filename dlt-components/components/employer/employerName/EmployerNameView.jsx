@@ -5,19 +5,17 @@ const EmployerNameView = (props) => {
     const { name, style } = props;
 
     return (
-        <text style={style}>
+        <span style={style}>
             {name}
-        </text>
+        </span>
     );
 };
 
 EmployerNameView.propTypes = {
-    name: PropTypes.string,
+    name: PropTypes.string.isRequired,
     style: PropTypes.object,
 };
 
-EmployerNameView.defaultProps = {
-    name: 'Tập đoàn Đại học Bách Khoa Hà Nội',
-};
+EmployerNameView.defaultProps = {};
 
 export default EmployerNameView;
