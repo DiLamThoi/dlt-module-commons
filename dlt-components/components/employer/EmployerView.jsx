@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 
 // Components
 import { Button } from 'antd';
-import { HeartOutlined } from '@ant-design/icons';
 import EmployerLogoContainer from '@dlt-components/components/employer/employerLogo/EmployerLogoContainer';
 import EmployerNameContainer from '@dlt-components/components/employer/employerName/EmployerNameContainer';
-import EmployerAddressContainer from '@dlt-components/components/employer/employerAddress/EmployerAddressContainer';
 
 const EmployerView = (props) => {
     const { data } = props;
@@ -14,9 +12,13 @@ const EmployerView = (props) => {
     const { id, name, status, logo, address } = data;
 
     return (
-        <Button style={{ width: '100%', flexDirection: 'column', minWidth: 200, height: 'max-content', padding: '12px 8px' }}>
-            <EmployerLogoContainer employerId={id} width={100} height={100} style={{ objectFit: 'contain' }} />
-            {/* <EmployerNameContainer employerId={id} /> */}
+        <Button style={{ width: '100%', minWidth: 100, height: 'max-content', padding: '12px 8px' }}>
+            <span style={{ marginBottom: 16 }}>
+                <EmployerLogoContainer employerId={id} width={100} height={100} style={{ objectFit: 'contain' }} />
+            </span>
+            <div style={{ maxWidth: '100%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'center' }}>
+                <EmployerNameContainer employerId={id} />
+            </div>
         </Button>
     );
 };
