@@ -1,7 +1,6 @@
 import StoreConfig from '@dlt-object-base/storeConfig';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
-import { JOB_ACTION } from '../actions/jobActions';
-import { createJob } from '../slice/jobSlice';
+import { JOB_ACTION, hasJobUiAction, jobUiAction } from '../actions/jobActions';
 import axios from 'axios';
 
 /** Handle Saga action */
@@ -12,10 +11,15 @@ function* doFetchJobSaga(action) {
         const jobs = response.data[StoreConfig.job];
         const jobIds = Object.keys(jobs);
         for (const jobId of jobIds) {
-            yield put(createJob({ id: jobId, data: jobs[jobId] }));
+            yield put(jobUiAction.add({ id: jobId, data: jobs[jobId] }));
+        }
+        const hasJobs = response.data[StoreConfig.hasJob];
+        const hasJobIds = Object.keys(hasJobs);
+        for (const hasJobId of hasJobIds) {
+            yield put(hasJobUiAction.addList({ parentId: hasJobId, ids: hasJobs[hasJobId] }));
         }
     } catch (error) {
-        console.log(error);
+        // console.log(error);
     }
 }
 

@@ -5,16 +5,16 @@ import { Col, Row } from 'antd';
 
 // Selector + Action
 import { useDispatch, useSelector } from 'react-redux';
-import employerAction from '@dlt-object-base/dlt-employer/actions/employerActions';
-import employerSelector from '@dlt-object-base/dlt-employer/selector/employerSelector';
+import { employerApiAction } from '@dlt-object-base/dlt-employer/actions/employerActions';
+import hasEmployerSelector from '@dlt-object-base/dlt-employer/selector/hasEmployerSelector';
 import EmployerContainer from '@dlt-components/components/employer/EmployerContainer';
 
 const EmployerScreen = () => {
     const dispatch = useDispatch();
-    const employerIds = useSelector((state) => employerSelector.getItemIds(state));
+    const employerIds = useSelector((state) => hasEmployerSelector.getItemIds(state, '-1'));
 
     useEffect(() => {
-        dispatch(employerAction.fetchEmployer());
+        dispatch(employerApiAction.fetchEmployer('meId'));
     }, [dispatch]);
 
     return (

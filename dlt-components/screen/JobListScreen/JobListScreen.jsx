@@ -6,15 +6,15 @@ import JobContainer from '@dlt-components/components/job/JobContainer';
 
 // Selector + Action
 import { useDispatch, useSelector } from 'react-redux';
-import jobAction from '@dlt-object-base/dlt-job/actions/jobActions';
-import jobSelector from '@dlt-object-base/dlt-job/selector/jobSelector';
+import { jobApiAction } from '@dlt-object-base/dlt-job/actions/jobActions';
+import hasJobSelector from '@dlt-object-base/dlt-job/selector/hasJobSelector';
 
 const JobListScreen = () => {
     const dispatch = useDispatch();
-    const jobIds = useSelector((state) => jobSelector.getItemIds(state));
+    const jobIds = useSelector((state) => hasJobSelector.getItemIds(state, '-1'));
 
     useEffect(() => {
-        dispatch(jobAction.fetchJob('meId'));
+        dispatch(jobApiAction.fetchJob('meId'));
     }, [dispatch]);
 
     return (

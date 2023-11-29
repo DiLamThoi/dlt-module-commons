@@ -8,7 +8,7 @@ import JobView from './JobView';
 const JobContainer = (props) => {
     const { jobId } = props;
 
-    const jobData = useSelector((state) => jobSelector.get(state, jobId));
+    const jobData = useSelector((state) => jobSelector.getInfo(state, jobId, 'data'));
 
     const onFollowJob = useCallback(() => {
         // Dispath Folowjob action here
