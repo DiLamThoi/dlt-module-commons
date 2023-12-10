@@ -1,14 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
-import initialEdgeState from '@dlt-object-base/dlt-base/edge/initialEdgeState';
+import { createEdgeSlice } from '@dlt-object-base/dlt-base/utils/createSlice';
 import StoreConfig from '@dlt-object-base/storeConfig';
-import edgeReducers from '@dlt-object-base/dlt-base/edge/edgeReducer';
 
-const hasEmployerSlice = createSlice({
-    name: StoreConfig.hasEmployer,
-    initialState: initialEdgeState,
-    reducers: {
-        ...edgeReducers,
-    },
-});
+const hasEmployerSlice = createEdgeSlice(StoreConfig.hasEmployer);
 
 export default hasEmployerSlice;

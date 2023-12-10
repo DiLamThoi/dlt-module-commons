@@ -5,6 +5,7 @@ export const getInWithDeault = (object, defaultValue, ...path) => _.get(object, 
 
 const lodash = {
     getIn,
+    getInWithDeault,
 };
 
 export default lodash;
