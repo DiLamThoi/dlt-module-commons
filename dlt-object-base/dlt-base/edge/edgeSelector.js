@@ -1,4 +1,4 @@
-import { getIn, getInWithDeault } from '../utils/lodash';
+import { getIn, getInWithDeault } from '@dlt-module-base/utils/lodash';
 
 const getSelf = (state) => state;
 const getItems = (state, parentId) => getInWithDeault(state, [], parentId, 'items');

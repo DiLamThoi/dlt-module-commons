@@ -1,4 +1,4 @@
-import { getIn } from '../utils/lodash';
+import { getIn } from '@dlt-module-base/utils/lodash';
 
 const getAll = (state) => state;
 const get = (state, id) => getIn(state, id);

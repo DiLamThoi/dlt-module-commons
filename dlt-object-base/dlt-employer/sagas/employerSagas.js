@@ -1,5 +1,5 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { EMPLOYER_ACTION, employerUiAction, hasEmployerUiAction } from '../actions/employerActions';
 
 /** Handle Saga action */
@@ -10,7 +10,7 @@ function* doFetchEmployerSaga(action) {
         const employerIds = Object.keys(employers);
         yield put(hasEmployerUiAction.addList({ parentId: '-1', ids: employerIds }));
         for (const employerId of employerIds) {
-            yield put(employerUiAction.add({ id: employerId, data: employers[employerId] }));
+            yield put(employerUiAction.add({ data: employers[employerId] }));
         }
     } catch (error) {
         // console.log(error);

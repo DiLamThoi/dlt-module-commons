@@ -6,11 +6,11 @@
  *         itemIds: [
  *             {{id}},
  *         ],
- *         items: [
+ *         items: {
  *             {{id}}: {
  *                 data: {}
  *             }
- *         ],
+ *         },
  *         total: number,
  *         older204: bool,
  *     }

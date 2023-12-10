@@ -61,7 +61,7 @@ const JobView = (props) => {
         >
             <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'start' }}>
                 <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
-                    <text style={{ flex: '1', color: token.colorTextSecondary, fontWeight: token.fontWeightStrong }}>{title}</text>
+                    <span style={{ flex: '1', color: token.colorTextSecondary, fontWeight: token.fontWeightStrong }}>{title}</span>
                     <Button type="text" icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
                 </div>
                 <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 8 }}>

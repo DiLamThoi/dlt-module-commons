@@ -11,7 +11,7 @@ function* doFetchJobSaga(action) {
         const jobs = response.data[StoreConfig.job];
         const jobIds = Object.keys(jobs);
         for (const jobId of jobIds) {
-            yield put(jobUiAction.add({ id: jobId, data: jobs[jobId] }));
+            yield put(jobUiAction.add({ data: jobs[jobId] }));
         }
         const hasJobs = response.data[StoreConfig.hasJob];
         const hasJobIds = Object.keys(hasJobs);
