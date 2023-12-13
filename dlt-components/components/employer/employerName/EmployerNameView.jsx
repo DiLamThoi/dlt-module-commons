@@ -12,7 +12,7 @@ const EmployerNameView = (props) => {
 };
 
 EmployerNameView.propTypes = {
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     style: PropTypes.object,
 };
 

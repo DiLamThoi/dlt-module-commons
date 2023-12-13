@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 
 // Components
-import { Col, Row } from 'antd';
-import JobContainer from '@dlt-components/components/job/JobContainer';
+import JobListContainer from '@dlt-components/components/job/JobListContainer';
 
 // Selector + Action
 import { useDispatch, useSelector } from 'react-redux';
 import { jobApiAction } from '@dlt-object-base/dlt-job/actions/jobActions';
 import hasJobSelector from '@dlt-object-base/dlt-job/selector/hasJobSelector';
+import CreateJobContainer from '@dlt-components/components/job/createJob/CreateJobContainer';
 
 const JobListScreen = () => {
     const dispatch = useDispatch();
@@ -18,14 +18,9 @@ const JobListScreen = () => {
     }, [dispatch]);
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: 8 }}>
-            <Row gutter={[16, 16]}>
-                {jobIds.map((jobId) => (
-                    <Col key={jobId} xs={24} sm={24} md={24} lg={12} xl={8}>
-                        <JobContainer key={jobId} jobId={jobId}/>
-                    </Col>
-                ))}
-            </Row>
+        <div style={{ display: 'flex', flexDirection: 'column', padding: 8 }}>
+            <JobListContainer jobIds={jobIds} />
+            <CreateJobContainer typeView="float" />
         </div>
     );
 };
