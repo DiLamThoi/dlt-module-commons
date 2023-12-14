@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Typography, Form, Input, Divider, Select } from 'antd';
 import { LoginOutlined } from '@ant-design/icons';
 import { ROLE_LOGIN } from './constants/loginConstants';
+import { noop } from 'lodash/util';
 
 const LoginView = (props) => {
     const { onLogin, navigateRegister } = props;
@@ -83,8 +84,8 @@ LoginView.propTypes = {
 };
 
 LoginView.defaultProps = {
-    onLogin: () => undefined,
-    navigateRegister: () => undefined,
+    onLogin: noop,
+    navigateRegister: noop,
 };
 
 export default LoginView;

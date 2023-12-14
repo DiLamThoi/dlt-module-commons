@@ -4,6 +4,7 @@ import { Button, Select, Typography } from 'antd';
 import { ROLE_REGISTER } from './constants/registerConstants';
 import UserForm from './components/UserForm';
 import EmployerForm from './components/EmployerForm';
+import { noop } from 'lodash/util';
 
 const RegisterView = (props) => {
     const { onRegisterUser, onRegisterEmployer, navigateLogin } = props;
@@ -72,9 +73,9 @@ RegisterView.propTypes = {
 };
 
 RegisterView.defaultProps = {
-    onRegisterUser: () => undefined,
-    onRegisterEmployer: () => undefined,
-    navigateLogin: () => undefined,
+    onRegisterUser: noop,
+    onRegisterEmployer: noop,
+    navigateLogin: noop,
 };
 
 export default RegisterView;
