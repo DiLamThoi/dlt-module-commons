@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Col, Form, Input, Row } from 'antd';
+import { noop } from 'lodash/util';
 
 const UserForm = (props) => {
     const { style, onFinish, onFinishFailed } = props;
@@ -14,30 +15,31 @@ const UserForm = (props) => {
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
+            size="large"
         >
             <Row gutter={16}>
                 <Col span={12}>
                     <Form.Item name="firstName">
-                        <Input size="large" placeholder="Họ" />
+                        <Input placeholder="Họ" />
                     </Form.Item>
                 </Col>
                 <Col span={12}>
                     <Form.Item name="lastName">
-                        <Input size="large" placeholder="Tên" />
+                        <Input placeholder="Tên" />
                     </Form.Item>
                 </Col>
             </Row>
             <Form.Item name="email">
-                <Input size="large" placeholder="Email" />
+                <Input placeholder="Email" />
             </Form.Item>
             <Form.Item name="userName">
-                <Input size="large" placeholder="Tên tài khoản" />
+                <Input placeholder="Tên tài khoản" />
             </Form.Item>
             <Form.Item name="password">
-                <Input.Password size="large" placeholder="Mật khẩu mới" />
+                <Input.Password placeholder="Mật khẩu mới" />
             </Form.Item>
             <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button size="large" type="primary" htmlType="submit" style={{ backgroundColor: '#42b72a' }}>
+                <Button type="primary" htmlType="submit" style={{ backgroundColor: '#42b72a' }}>
                     Đăng ký
                 </Button>
             </Form.Item>
@@ -52,8 +54,8 @@ UserForm.propTypes = {
 };
 
 UserForm.defaultProps = {
-    onFinish: () => undefined,
-    onFinishFailed: () => undefined,
+    onFinish: noop,
+    onFinishFailed: noop,
 };
 
 export default UserForm;

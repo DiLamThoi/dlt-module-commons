@@ -41,7 +41,16 @@ const CreateJobView = (props) => {
                     icon={<PlusOutlined />}
                     tooltip="Đăng tin tuyển dụng"
                 />
-                <Modal title={Title} open={open} onCancel={onClose} footer={null}>
+                <Modal
+                    title={Title}
+                    open={open}
+                    onCancel={onClose}
+                    footer={null}
+                    width={1000}
+                    styles={{
+                        body: { overflow: 'auto', height: '80vh' },
+                    }}
+                >
                     <JobForm onFinish={createJob} />
                 </Modal>
             </React.Fragment>

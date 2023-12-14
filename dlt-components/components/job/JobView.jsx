@@ -7,6 +7,7 @@ import { HeartOutlined } from '@ant-design/icons';
 import EmployerLogoContainer from '@dlt-components/components/employer/employerLogo/EmployerLogoContainer';
 import EmployerNameContainer from '@dlt-components/components/employer/employerName/EmployerNameContainer';
 import EmployerAddressContainer from '@dlt-components/components/employer/employerAddress/EmployerAddressContainer';
+import { noop } from 'lodash/util';
 
 const JobView = (props) => {
     const { data, onFollowJob } = props;
@@ -109,7 +110,7 @@ JobView.propTypes = {
 };
 
 JobView.defaultProps = {
-    onFollowJob: () => undefined,
+    onFollowJob: noop,
 };
 
 export default JobView;
