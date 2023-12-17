@@ -15,8 +15,8 @@ const CreateJobView = (props) => {
     const onClose = useCallback(() => setOpen(false), []);
 
     const Title = useMemo(() => (
-        <div style={{ color: token.blue }}>
-            <AppstoreAddOutlined style={{ marginRight: 8 }} />
+        <div style={{ color: token.blue, fontSize: token.fontSizeHeading3 }}>
+            <AppstoreAddOutlined style={{ marginRight: 8 }} size={30} />
             Đăng tin tuyển dụng
         </div>
     ), [token]);
@@ -46,9 +46,9 @@ const CreateJobView = (props) => {
                     open={open}
                     onCancel={onClose}
                     footer={null}
-                    width={1000}
+                    width={'60vw'}
                     styles={{
-                        body: { overflow: 'auto', height: '80vh' },
+                        body: { overflow: 'auto', height: '60vh' },
                     }}
                 >
                     <JobForm onFinish={createJob} />

@@ -9,10 +9,15 @@ const JOB_FIELD = {
     GENDER: 'genderId',
     QUANTITY: 'quantity',
     PROBATION: 'probationTime',
+    // APPLY_START_TIME: 'applyStartTime',
     APPLY_END_TIME: 'applyEndTime',
+    APPLY_COUNT: 'applyCount',
+    // SALARY_UNIT: 'salaryUnit', // Default = triệu VND
     SALARY_MIN: 'salaryMin',
     SALARY_MAX: 'salaryMax',
     DESCRIPTION: 'description',
+    TOTAL_VIEW: 'totalView',
+    // EMPLOYER: 'employerId',
 };
 
 // TruongNBN: hiện tại fix cứng các phương thức làm việc. Xử lý server sau
