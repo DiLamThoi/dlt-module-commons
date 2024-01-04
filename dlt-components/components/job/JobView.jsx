@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 
 // Components
 import { Button, theme } from 'antd';
-import { HeartOutlined } from '@ant-design/icons';
+import { DeleteOutlined, HeartOutlined } from '@ant-design/icons';
 import EmployerLogoContainer from '@dlt-components/components/employer/employerLogo/EmployerLogoContainer';
 import EmployerNameContainer from '@dlt-components/components/employer/employerName/EmployerNameContainer';
 import EmployerAddressContainer from '@dlt-components/components/employer/employerAddress/EmployerAddressContainer';
 import { noop } from 'lodash/util';
+import { showJobInfoBar } from '@dlt-components/components/inforBar/global/infoBarGlobal';
 
 const JobView = (props) => {
-    const { data, onFollowJob } = props;
+    const { data, onFollow, onDelete } = props;
 
     const { 
         id,
@@ -39,20 +40,25 @@ const JobView = (props) => {
     const jobSalary = `${salaryMin}-${salaryMax} ${salaryUnit}`;
 
     const onShowJobDetail = useCallback((e) => {
-        //
-    }, []);
+        showJobInfoBar(id);
+    }, [id]);
 
     const onClickFollowJobButton = useCallback((e) => {
-        onFollowJob();
+        onFollow();
         e.stopPropagation();
-    }, [onFollowJob]);
+    }, [onFollow]);
+
+    const onClickDeleteJobButton = useCallback((e) => {
+        onDelete();
+        e.preventDefault();
+    }, [onDelete]);
 
     return (
         <Button
             onClick={onShowJobDetail}
             style={{
                 width: '100%',
-                minWidth: 300,
+                minWidth: 200,
                 height: 'max-content',
                 paddingLeft: token.paddingContentHorizontalSM,
                 paddingRight: token.paddingContentHorizontalSM,
@@ -64,6 +70,7 @@ const JobView = (props) => {
                 <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
                     <span style={{ flex: '1', color: token.colorTextSecondary, fontWeight: token.fontWeightStrong }}>{title}</span>
                     <Button type="text" icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
+                    <Button type="text" icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
                 </div>
                 <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 8 }}>
                     <span style={{ display: 'block', width: 100 }}>
@@ -106,11 +113,13 @@ JobView.propTypes = {
         description: PropTypes.string,
         totalView: PropTypes.number,
     }),
-    onFollowJob: PropTypes.func,
+    onFollow: PropTypes.func,
+    onDelete: PropTypes.func,
 };
 
 JobView.defaultProps = {
-    onFollowJob: noop,
+    onFollow: noop,
+    onDelete: noop,
 };
 
 export default JobView;

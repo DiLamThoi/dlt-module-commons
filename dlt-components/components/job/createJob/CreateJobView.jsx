@@ -14,6 +14,11 @@ const CreateJobView = (props) => {
     const onOpen = useCallback(() => setOpen(true), []);
     const onClose = useCallback(() => setOpen(false), []);
 
+    const onCreateJob = useCallback((jobData) => {
+        createJob(jobData);
+        onClose();
+    }, [createJob, onClose]);
+
     const Title = useMemo(() => (
         <div style={{ color: token.blue, fontSize: token.fontSizeHeading3 }}>
             <AppstoreAddOutlined style={{ marginRight: 8 }} size={30} />
@@ -51,7 +56,7 @@ const CreateJobView = (props) => {
                         body: { overflow: 'auto', height: '60vh' },
                     }}
                 >
-                    <JobForm onFinish={createJob} />
+                    <JobForm onFinish={onCreateJob} />
                 </Modal>
             </React.Fragment>
         );
