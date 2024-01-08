@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 
 // Components
 import dayjs from 'dayjs';
-import { Button, Input, Space, Typography, theme } from 'antd';
-import { CalendarOutlined, ClockCircleOutlined, DeleteOutlined, DollarOutlined, EnvironmentOutlined, EyeOutlined, FileDoneOutlined, FormOutlined, HeartOutlined, LineHeightOutlined, MoneyCollectOutlined, SendOutlined, TeamOutlined, UserSwitchOutlined, UsergroupAddOutlined } from '@ant-design/icons';
+import { Button, Input, theme } from 'antd';
+import { CalendarOutlined, ClockCircleOutlined, DeleteOutlined, DollarOutlined, EnvironmentOutlined, EyeOutlined, FileDoneOutlined, FormOutlined, HeartOutlined, LineHeightOutlined, SendOutlined, TeamOutlined, UserSwitchOutlined } from '@ant-design/icons';
 import EmployerLogoContainer from '@dlt-components/components/employer/employerLogo/EmployerLogoContainer';
 import EmployerNameContainer from '@dlt-components/components/employer/employerName/EmployerNameContainer';
 import EmployerAddressContainer from '@dlt-components/components/employer/employerAddress/EmployerAddressContainer';
 import { noop } from 'lodash/util';
-import { showJobInfoBar } from '@dlt-components/components/inforBar/global/infoBarGlobal';
 import { JOB_DEGREE, JOB_EXPERIENCE, JOB_GENDER, JOB_METHOD } from './constants/jobConstants';
 
 const JobField = (props) => {

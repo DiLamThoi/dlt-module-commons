@@ -4,12 +4,18 @@ import { Button, Layout, Space, theme } from 'antd';
 import JobContainer from '@dlt-components/components/job/JobContainer';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { JOB_TYPE_VIEW } from '@dlt-components/components/job/constants/jobConstants';
+import { INFOBAR_TYPE } from '../constants/infoBarConstants';
+import EmployerContainer from '@dlt-components/components/employer/EmployerContainer';
 const { Sider } = Layout;
 
 const subject = new Subject(null);
 
 export const showJobInfoBar = (jobId) => {
-    subject.next({ id: jobId, type: 'JOB' });
+    subject.next({ id: jobId, type: INFOBAR_TYPE.JOB });
+};
+
+export const showEmployerInfoBar = (employerId) => {
+    subject.next({ id: employerId, type: INFOBAR_TYPE.EMPLOYER });
 };
 
 export const closeInfoBar = () => subject.next();
@@ -34,8 +40,10 @@ const InfoBarGlobal = () => {
 
     const title = useMemo(() => {
         switch (type) {
-        case 'JOB':
+        case INFOBAR_TYPE.JOB:
             return 'Chi tiết công việc';
+        case INFOBAR_TYPE.EMPLOYER:
+            return 'Chi tiết nhà tuyển dụng';
         default:
             return null;
         }
@@ -43,8 +51,10 @@ const InfoBarGlobal = () => {
 
     const renderContent = () => {
         switch (type) {
-        case 'JOB':
+        case INFOBAR_TYPE.JOB:
             return <JobContainer key={id} jobId={id} typeView={JOB_TYPE_VIEW.DETAIL} />;
+        case INFOBAR_TYPE.EMPLOYER:
+            return <EmployerContainer key={id} employerId={id}/>;
         default:
             return null;
         }
