@@ -2,11 +2,12 @@ import axios from 'axios';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { EMPLOYER_ACTION, employerUiAction, hasEmployerUiAction } from '../actions/employerActions';
 import StoreConfig from '@dlt-object-base/storeConfig';
+import { DLT_DOMAIN } from '@dlt-object-base/dlt-config/apiConfig';
 
 /** Handle Saga action */
 function* doFetchEmployerSaga(action) {
     try {
-        const response = yield call(axios.get, 'http://server.truongnbn.com:8080/employer');
+        const response = yield call(axios.get, `${DLT_DOMAIN}/employer`);
         const employers = response.data[StoreConfig.employer];
         const employerIds = Object.keys(employers);
         yield put(hasEmployerUiAction.addList({ parentId: '-1', ids: employerIds }));

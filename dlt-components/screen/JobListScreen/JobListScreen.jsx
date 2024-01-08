@@ -18,7 +18,7 @@ const JobListScreen = () => {
     }, [dispatch]);
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', padding: 8 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', padding: 8, height: '100vh', overflowY: 'auto' }}>
             <JobListContainer jobIds={jobIds} />
             <CreateJobContainer typeView="float" />
         </div>

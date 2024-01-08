@@ -5,6 +5,7 @@ import { useSignIn } from 'react-auth-kit';
 import RegisterView from './RegisterView';
 import { ROLE_REGISTER } from './constants/registerConstants';
 import Cookies from 'js-cookie';
+import { DLT_DOMAIN } from '@dlt-object-base/dlt-config/apiConfig';
 
 const RegisterContainer = () => {
     const signIn = useSignIn();
@@ -15,7 +16,7 @@ const RegisterContainer = () => {
     }, [navigate]);
 
     const onRegister = useCallback((role, data) => {
-        axios.post('http://server.truongnbn.com:8080/register', { role, data }).then((res) => {
+        axios.post(`${DLT_DOMAIN}/register`, { role, data }).then((res) => {
             const { token, meId } = res.data;
             // Lưu thông tin vào cookie
             Cookies.set('meId', meId);

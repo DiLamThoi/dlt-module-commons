@@ -61,10 +61,16 @@ const JOB_GENDER = {
     FEMALE: 'JOB_GENDER.FEMALE',
 };
 
+const JOB_TYPE_VIEW = {
+    BUTTON: 'JOB_TYPE_VIEW.BUTTON',
+    DETAIL: 'JOB_TYPE_VIEW.DETAIL',
+};
+
 export {
     JOB_FIELD,
     JOB_METHOD,
     JOB_DEGREE,
     JOB_EXPERIENCE,
     JOB_GENDER,
+    JOB_TYPE_VIEW,
 };

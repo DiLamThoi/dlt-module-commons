@@ -2,12 +2,13 @@ import StoreConfig from '@dlt-object-base/storeConfig';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { JOB_ACTION, hasJobUiAction, jobUiAction } from '../actions/jobActions';
 import axios from 'axios';
+import { DLT_DOMAIN } from '@dlt-object-base/dlt-config/apiConfig';
 
 /** Handle Saga action */
 function* doCreateJobSaga(action) {
     const { data } = action.payload;
     try {
-        const response = yield call(axios.post, 'http://server.truongnbn.com:8080/job', { data });
+        const response = yield call(axios.post, `${DLT_DOMAIN}/job`, { data });
         const jobs = response.data[StoreConfig.job];
         const jobIds = Object.keys(jobs);
         for (const jobId of jobIds) {
@@ -26,7 +27,7 @@ function* doCreateJobSaga(action) {
 function* doDeleteJobSaga(action) {
     const { id } = action.payload;
     try {
-        const response = yield call(axios.delete, `http://server.truongnbn.com:8080/job/${id}`);
+        const response = yield call(axios.delete, `${DLT_DOMAIN}/job/${id}`);
         if (response) {
             yield put(jobUiAction.remove({ id }));
         }
@@ -39,7 +40,7 @@ function* doDeleteJobSaga(action) {
 function* doFetchJobSaga(action) {
     const { userId } = action.payload;
     try {
-        const response = yield call(axios.get, 'http://server.truongnbn.com:8080/job');
+        const response = yield call(axios.get, `${DLT_DOMAIN}/job`);
         const jobs = response.data[StoreConfig.job];
         const jobIds = Object.keys(jobs);
         for (const jobId of jobIds) {

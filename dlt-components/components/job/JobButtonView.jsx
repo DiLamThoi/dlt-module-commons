@@ -10,36 +10,16 @@ import EmployerAddressContainer from '@dlt-components/components/employer/employ
 import { noop } from 'lodash/util';
 import { showJobInfoBar } from '@dlt-components/components/inforBar/global/infoBarGlobal';
 
-const JobView = (props) => {
+const JobButtonView = (props) => {
     const { data, onFollow, onDelete } = props;
 
-    const { 
-        id,
-        title,
-        levelId,
-        employerId,
-        quantity,
-        methodId,
-        probationTime,
-        salaryUnit,
-        salaryMin,
-        salaryMax,
-        applyStartTime,
-        applyEndTime,
-        applyCount,
-        ageMin,
-        ageMax,
-        degreeId,
-        genderId,
-        description,
-        totalView,
-    } = data;
+    const { id, title, employerId, salaryUnit, salaryMin, salaryMax } = data;
 
     const { token } = theme.useToken();
 
-    const jobSalary = `${salaryMin}-${salaryMax} ${salaryUnit}`;
+    const jobSalary = `${salaryMin}-${salaryMax} ${salaryUnit || 'triệu VND'}`;
 
-    const onShowJobDetail = useCallback((e) => {
+    const onShowJobDetail = useCallback(() => {
         showJobInfoBar(id);
     }, [id]);
 
@@ -68,7 +48,7 @@ const JobView = (props) => {
         >
             <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'start' }}>
                 <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
-                    <span style={{ flex: '1', color: token.colorTextSecondary, fontWeight: token.fontWeightStrong }}>{title}</span>
+                    <span style={{ flex: '1', color: token.colorTextBase, fontWeight: token.fontWeightStrong }}>{title}</span>
                     <Button type="text" icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
                     <Button type="text" icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
                 </div>
@@ -91,7 +71,7 @@ const JobView = (props) => {
     );
 };
 
-JobView.propTypes = {
+JobButtonView.propTypes = {
     data: PropTypes.shape({
         id: PropTypes.string.isRequired,
         title: PropTypes.string,
@@ -117,9 +97,9 @@ JobView.propTypes = {
     onDelete: PropTypes.func,
 };
 
-JobView.defaultProps = {
+JobButtonView.defaultProps = {
     onFollow: noop,
     onDelete: noop,
 };
 
-export default JobView;
+export default JobButtonView;

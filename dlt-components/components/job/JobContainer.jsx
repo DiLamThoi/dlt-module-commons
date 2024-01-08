@@ -1,13 +1,14 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import jobSelector from '@dlt-module-job/selector/jobSelector';
-
-import JobView from './JobView';
+import JobButtonView from './JobButtonView';
+import JobDetailView from './JobDetailView';
 import { jobApiAction } from '@dlt-object-base/dlt-job/actions/jobActions';
+import { JOB_TYPE_VIEW } from './constants/jobConstants';
 
 const JobContainer = (props) => {
-    const { jobId } = props;
+    const { jobId, typeView } = props;
     const dispatch = useDispatch();
 
     const jobData = useSelector((state) => jobSelector.getInfo(state, jobId, 'data'));
@@ -20,13 +21,29 @@ const JobContainer = (props) => {
         dispatch(jobApiAction.deleteJob(id));
     }, [dispatch]);
 
+    const JobViewComponent = useMemo(() => {
+        switch (typeView) {
+        case JOB_TYPE_VIEW.BUTTON:
+            return JobButtonView;
+        case JOB_TYPE_VIEW.DETAIL:
+            return JobDetailView;
+        default: 
+            return JobButtonView;
+        }
+    }, [typeView]);
+
     return jobData && (
-        <JobView data={jobData} onFollow={onFollowJob} onDelete={onDeleteJob} />
+        <JobViewComponent data={jobData} onFollow={onFollowJob} onDelete={onDeleteJob} />
     );
 };
 
 JobContainer.propTypes = {
     jobId: PropTypes.string,
+    typeView: PropTypes.oneOf([JOB_TYPE_VIEW.BUTTON, JOB_TYPE_VIEW.DETAIL]),
+};
+
+JobContainer.defaultProps = {
+    typeView: JOB_TYPE_VIEW.DETAIL,
 };
 
 export default JobContainer;
