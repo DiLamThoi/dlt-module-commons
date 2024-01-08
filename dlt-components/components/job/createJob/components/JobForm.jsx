@@ -6,10 +6,23 @@ import viDatePickerLocate from 'antd/es/date-picker/locale/vi_VN';
 import { noop } from 'lodash/util';
 
 const JobForm = (props) => {
-    const { style, onFinish, onFinishFailed } = props;
+    const { style, onFinish, onFinishFailed, onClose } = props;
 
     const [form] = Form.useForm();
     const { token } = theme.useToken();
+
+    const onResetForm = useCallback(() => {
+        form.resetFields();
+    }, [form]);
+
+    const onFinishForm = useCallback((values) => {
+        const jobData = { ...values };
+        if (jobData[JOB_FIELD.APPLY_END_TIME]) {
+            jobData[JOB_FIELD.APPLY_END_TIME] = jobData[JOB_FIELD.APPLY_END_TIME].valueOf();
+        }
+        onFinish(jobData);
+        onResetForm();
+    }, [onFinish, onResetForm]);
 
     const JobMethodOptions = useMemo(() => ([
         { value: JOB_METHOD.FULLTIME_FIXED, label: 'Toàn thời gian cố định' },
@@ -84,8 +97,9 @@ const JobForm = (props) => {
         <Form
             style={{ width: '100%', margin: '0 auto' }}
             form={form}
-            onFinish={onFinish}
+            onFinish={onFinishForm}
             onFinishFailed={onFinishFailed}
+            onReset={onResetForm}
             autoComplete="off"
             size="middle"
             {...horizontal}
@@ -93,7 +107,7 @@ const JobForm = (props) => {
             {/* ----- Thông tin cơ bản -----  */}
             <Typography.Title level={4} style={{ margin: 0, marginBottom: token.marginXS }}>Thông tin cơ bản</Typography.Title>
             <Form.Item name={JOB_FIELD.TITLE} label="Chức vụ - Nghề nghiệp">
-                <Input placeholder="Vd: Nhân viên Marketing"/>
+                <Input placeholder="Vd: Nhân viên Marketing" autoFocus/>
             </Form.Item>
             <Row gutter={[0, 0]} >
                 <Col key={JOB_FIELD.METHOD} xs={24} sm={24} md={24} lg={12} xl={8}>
@@ -163,14 +177,14 @@ const JobForm = (props) => {
             <Form.Item name={JOB_FIELD.DESCRIPTION} label="Mô tả công việc">
                 <Input.TextArea placeholder="Vị trí công việc yêu cầu, trách nhiệm của ứng viên, ..." autoSize={{ minRows: 2, maxRows: 5 }}/>
             </Form.Item>
-            {/* ----- CANCEL - RESET - SUBMIT -----  */}
+            {/* ----- Chức năng: CANCEL - RESET - SUBMIT -----  */}
             <Space style={{ display: 'flex', justifyContent: 'end', flexDirection: 'row', gap: 8 }}>
                 <Form.Item>
-                    <Button type="primary" htmlType="button" style={{ backgroundColor: token.colorError }}>Huỷ</Button>
+                    <Button type="primary" htmlType="button" style={{ backgroundColor: token.colorError }} onClick={onClose}>Huỷ</Button>
                 </Form.Item>
-                {/* <Form.Item>
-                    <Button type="primary" htmlType="button" style={{ backgroundColor: token.colorWarning }}>Làm mới</Button>
-                </Form.Item> */}
+                <Form.Item>
+                    <Button type="primary" htmlType="reset" style={{ backgroundColor: token.colorWarning }}>Làm mới</Button>
+                </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit" style={{ backgroundColor: token.colorSuccess }}>Đăng</Button>
                 </Form.Item>
@@ -181,11 +195,13 @@ const JobForm = (props) => {
 
 JobForm.propTypes = {
     style: PropTypes.object,
+    onClose: PropTypes.func,
     onFinish: PropTypes.func,
     onFinishFailed: PropTypes.func,
 };
 
 JobForm.defaultProps = {
+    onClose: noop,
     onFinish: noop,
     onFinishFailed: noop,
 };

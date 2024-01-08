@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSignIn } from 'react-auth-kit';
 import RegisterView from './RegisterView';
 import { ROLE_REGISTER } from './constants/registerConstants';
+import Cookies from 'js-cookie';
 
 const RegisterContainer = () => {
     const signIn = useSignIn();
@@ -16,11 +17,14 @@ const RegisterContainer = () => {
     const onRegister = useCallback((role, data) => {
         axios.post('http://server.truongnbn.com:8080/register', { role, data }).then((res) => {
             const { token, meId } = res.data;
+            // Lưu thông tin vào cookie
+            Cookies.set('meId', meId);
+            Cookies.set('role', role);
             signIn({
-                token: res.data.token,
+                token,
                 expiresIn: 3600,
                 tokenType: 'Bearer',
-                authState: { userName: data.userName, email: data.email },
+                authState: { meId, role },
             });
             navigateLogin();
         }).catch((err) => {});

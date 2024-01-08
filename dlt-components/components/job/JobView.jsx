@@ -44,14 +44,14 @@ const JobView = (props) => {
     }, [id]);
 
     const onClickFollowJobButton = useCallback((e) => {
-        onFollow();
+        onFollow(id);
         e.stopPropagation();
-    }, [onFollow]);
+    }, [id, onFollow]);
 
     const onClickDeleteJobButton = useCallback((e) => {
-        onDelete();
-        e.preventDefault();
-    }, [onDelete]);
+        onDelete(id);
+        e.stopPropagation();
+    }, [id, onDelete]);
 
     return (
         <Button

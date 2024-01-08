@@ -4,6 +4,7 @@ import { useSignIn } from 'react-auth-kit';
 import { useNavigate } from 'react-router-dom';
 import LoginView from './LoginView';
 import { ROLE_LOGIN } from './constants/loginConstants';
+import Cookies from 'js-cookie';
 
 const LoginContainer = () => {
     const signIn = useSignIn();
@@ -12,11 +13,15 @@ const LoginContainer = () => {
     const onLogin = useCallback(async (userName, password, role = ROLE_LOGIN.USER) => {
         const data = { userName, password, role };
         axios.post('http://server.truongnbn.com:8080/login', { data }).then((res) => {
+            const { token, meId } = res.data; 
+            // Lưu thông tin vào cookie
+            Cookies.set('meId', meId);
+            Cookies.set('role', role);
             signIn({
-                token: res.data.token,
+                token,
                 expiresIn: 3600,
                 tokenType: 'Bearer',
-                authState: { meId: res.data.meId },
+                authState: { meId, role },
             });
         }).catch((err) => {});
     }, [signIn]);

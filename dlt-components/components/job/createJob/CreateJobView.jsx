@@ -56,7 +56,7 @@ const CreateJobView = (props) => {
                         body: { overflow: 'auto', height: '60vh' },
                     }}
                 >
-                    <JobForm onFinish={onCreateJob} />
+                    <JobForm onFinish={onCreateJob} onClose={onClose} />
                 </Modal>
             </React.Fragment>
         );

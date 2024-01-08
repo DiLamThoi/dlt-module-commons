@@ -26,7 +26,7 @@ function* doCreateJobSaga(action) {
 function* doDeleteJobSaga(action) {
     const { id } = action.payload;
     try {
-        const response = yield call(axios.delete, 'http://server.truongnbn.com:8080/job', { id });
+        const response = yield call(axios.delete, `http://server.truongnbn.com:8080/job/${id}`);
         if (response) {
             yield put(jobUiAction.remove({ id }));
         }
