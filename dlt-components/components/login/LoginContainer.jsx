@@ -3,21 +3,17 @@ import axios from 'axios';
 import { useSignIn } from 'react-auth-kit';
 import { useNavigate } from 'react-router-dom';
 import LoginView from './LoginView';
-import { ROLE_LOGIN } from './constants/loginConstants';
-import Cookies from 'js-cookie';
 import { DLT_DOMAIN } from '@dlt-object-base/dlt-config/apiConfig';
+import { ACCOUNT_ROLE } from '@dlt-components/constants/authConstants';
 
 const LoginContainer = () => {
     const signIn = useSignIn();
     const navigate = useNavigate();
 
-    const onLogin = useCallback(async (userName, password, role = ROLE_LOGIN.USER) => {
+    const onLogin = useCallback(async (userName, password, role = ACCOUNT_ROLE.USER) => {
         const data = { userName, password, role };
         axios.post(`${DLT_DOMAIN}/login`, { data }).then((res) => {
             const { token, meId } = res.data; 
-            // Lưu thông tin vào cookie
-            Cookies.set('meId', meId);
-            Cookies.set('role', role);
             signIn({
                 token,
                 expiresIn: 3600,

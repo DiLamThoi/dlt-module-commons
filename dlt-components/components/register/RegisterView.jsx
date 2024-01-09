@@ -1,23 +1,23 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Select, Typography } from 'antd';
-import { ROLE_REGISTER } from './constants/registerConstants';
 import UserForm from './components/UserForm';
 import EmployerForm from './components/EmployerForm';
 import { noop } from 'lodash/util';
+import { ACCOUNT_ROLE } from '@dlt-components/constants/authConstants';
 
 const RegisterView = (props) => {
     const { onRegisterUser, onRegisterEmployer, navigateLogin } = props;
 
-    const [type, setType] = useState(ROLE_REGISTER.USER);
+    const [type, setType] = useState(ACCOUNT_ROLE.USER);
 
     const RoleOptions = useMemo(() => ([
         {
-            value: ROLE_REGISTER.USER,
+            value: ACCOUNT_ROLE.USER,
             label: 'Người tìm việc',
         },
         {
-            value: ROLE_REGISTER.EMPLOYER,
+            value: ACCOUNT_ROLE.EMPLOYER,
             label: 'Nhà tuyển dụng',
         },
     ]), []);
@@ -28,9 +28,9 @@ const RegisterView = (props) => {
 
     const renderRegisterForm = useCallback((registerType) => {
         switch (registerType) {
-        case ROLE_REGISTER.USER:
+        case ACCOUNT_ROLE.USER:
             return <UserForm onFinish={onRegisterUser} />;
-        case ROLE_REGISTER.EMPLOYER:
+        case ACCOUNT_ROLE.EMPLOYER:
             return <EmployerForm onFinish={onRegisterEmployer} />;
         default:
             return null;

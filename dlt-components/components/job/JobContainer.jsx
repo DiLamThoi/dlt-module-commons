@@ -6,12 +6,14 @@ import JobButtonView from './JobButtonView';
 import JobDetailView from './JobDetailView';
 import { jobApiAction } from '@dlt-object-base/dlt-job/actions/jobActions';
 import { JOB_TYPE_VIEW } from './constants/jobConstants';
+import useAccount from '@dlt-components/hooks/useAccount';
 
 const JobContainer = (props) => {
     const { jobId, typeView } = props;
     const dispatch = useDispatch();
 
     const jobData = useSelector((state) => jobSelector.getInfo(state, jobId, 'data'));
+    const { meId, role, isEmployer } = useAccount();
 
     const onFollowJob = useCallback(() => {
         // Dispath Folowjob action here

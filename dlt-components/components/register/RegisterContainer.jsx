@@ -3,9 +3,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSignIn } from 'react-auth-kit';
 import RegisterView from './RegisterView';
-import { ROLE_REGISTER } from './constants/registerConstants';
 import Cookies from 'js-cookie';
 import { DLT_DOMAIN } from '@dlt-object-base/dlt-config/apiConfig';
+import { ACCOUNT_ROLE } from '@dlt-components/constants/authConstants';
 
 const RegisterContainer = () => {
     const signIn = useSignIn();
@@ -34,12 +34,12 @@ const RegisterContainer = () => {
     const onRegisterUser = useCallback(({ firstName, lastName, email, userName, password }) => {
         const data = { firstName, lastName, email, userName, password };
         data.fullName = `${data.firstName} ${data.lastName}`;
-        onRegister(ROLE_REGISTER.USER, data);
+        onRegister(ACCOUNT_ROLE.USER, data);
     }, [onRegister]);
 
     const onRegisterEmployer = useCallback(({ name, address, email, userName, password }) => {
         const data = { name, address, email, userName, password };
-        onRegister(ROLE_REGISTER.EMPLOYER, data);
+        onRegister(ACCOUNT_ROLE.EMPLOYER, data);
     }, [onRegister]);
 
     return (
