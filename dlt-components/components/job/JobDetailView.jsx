@@ -191,8 +191,8 @@ const JobDetailView = (props) => {
                         <span style={{ flex: 1, display: 'flex', gap: 8 }}>
                             <Button type="primary" shape="default" icon={<SendOutlined />}>Gửi hồ sơ</Button>
                             {isOwn
-                                ? <Button icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
-                                : <Button icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
+                                && <Button icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
+                                // : <Button icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
                             }
                         </span>
                         <JobField title="Lượt xem" Icon={EyeOutlined} value={totalView || 0} fontSize={token.fontSizeSM} color={token.colorTextBase}/>

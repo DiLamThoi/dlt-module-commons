@@ -50,8 +50,8 @@ const JobButtonView = (props) => {
                 <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
                     <span style={{ flex: '1', color: token.colorTextBase, fontWeight: token.fontWeightStrong }}>{title}</span>
                     {isOwn
-                        ? <Button icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
-                        : <Button icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
+                        && <Button icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
+                        // : <Button icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
                     }
                 </div>
                 <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 8 }}>

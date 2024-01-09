@@ -14,13 +14,13 @@ const JobContainer = (props) => {
     const { jobId, typeView } = props;
     const dispatch = useDispatch();
     const jobData = useSelector((state) => jobSelector.getInfo(state, jobId, 'data'));
-    const employer = useSelector((state) => employerSelector.get(state, jobData[JOB_FIELD.EMPLOYER]));
+    const employer = useSelector((state) => employerSelector.get(state, jobData && jobData[JOB_FIELD.EMPLOYER]));
     const { meId, isEmployer } = useAccount();
 
-    const isOwn = useMemo(() => isEmployer && meId === jobData[JOB_FIELD.EMPLOYER], [isEmployer, jobData, meId]);
+    const isOwn = useMemo(() => isEmployer && jobData && meId === jobData[JOB_FIELD.EMPLOYER], [isEmployer, jobData, meId]);
 
     useEffect(() => {
-        if (jobData[JOB_FIELD.EMPLOYER] && !employer) dispatch(employerApiAction.fetchAnEmployer(jobData[JOB_FIELD.EMPLOYER]));
+        if (jobData && jobData[JOB_FIELD.EMPLOYER] && !employer) dispatch(employerApiAction.fetchAnEmployer(jobData[JOB_FIELD.EMPLOYER]));
     }, [dispatch, employer, jobData]);
 
 

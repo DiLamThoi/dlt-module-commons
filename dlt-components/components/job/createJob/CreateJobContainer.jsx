@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import CreateJobView from './CreateJobView';
 import { jobApiAction } from '@dlt-object-base/dlt-job/actions/jobActions';
 import useAccount from '@dlt-components/hooks/useAccount';
+import { JOB_FIELD } from '../constants/jobConstants';
 
 const CreateJobContainer = (props) => {
     const { typeView } = props;
@@ -11,8 +12,9 @@ const CreateJobContainer = (props) => {
     const { meId, isEmployer } = useAccount();
 
     const createJob = useCallback((data) => {
+        data[JOB_FIELD.EMPLOYER] = meId;
         dispatch(jobApiAction.createJob(data));
-    }, [dispatch]);
+    }, [dispatch, meId]);
 
     return isEmployer && (
         <CreateJobView typeView={typeView} createJob={createJob} />
