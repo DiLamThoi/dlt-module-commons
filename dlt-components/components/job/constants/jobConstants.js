@@ -17,7 +17,7 @@ const JOB_FIELD = {
     SALARY_MAX: 'salaryMax',
     DESCRIPTION: 'description',
     TOTAL_VIEW: 'totalView',
-    // EMPLOYER: 'employerId',
+    EMPLOYER: 'employerId',
 };
 
 // TruongNBN: hiện tại fix cứng các phương thức làm việc. Xử lý server sau

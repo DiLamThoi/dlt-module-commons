@@ -11,7 +11,7 @@ import { noop } from 'lodash/util';
 import { showJobInfoBar } from '@dlt-components/components/inforBar/global/infoBarGlobal';
 
 const JobButtonView = (props) => {
-    const { data, onFollow, onDelete } = props;
+    const { data, isOwn, onFollow, onDelete } = props;
 
     const { id, title, employerId, salaryUnit, salaryMin, salaryMax } = data;
 
@@ -49,8 +49,10 @@ const JobButtonView = (props) => {
             <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'start' }}>
                 <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
                     <span style={{ flex: '1', color: token.colorTextBase, fontWeight: token.fontWeightStrong }}>{title}</span>
-                    <Button type="text" icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
-                    <Button type="text" icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
+                    {isOwn
+                        ? <Button icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
+                        : <Button icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
+                    }
                 </div>
                 <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 8 }}>
                     <span style={{ display: 'block', width: 100 }}>
@@ -93,6 +95,7 @@ JobButtonView.propTypes = {
         description: PropTypes.string,
         totalView: PropTypes.number,
     }),
+    isOwn: PropTypes.bool,
     onFollow: PropTypes.func,
     onDelete: PropTypes.func,
 };

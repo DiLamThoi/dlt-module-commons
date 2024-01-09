@@ -3,16 +3,18 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import CreateJobView from './CreateJobView';
 import { jobApiAction } from '@dlt-object-base/dlt-job/actions/jobActions';
+import useAccount from '@dlt-components/hooks/useAccount';
 
 const CreateJobContainer = (props) => {
     const { typeView } = props;
     const dispatch = useDispatch();
+    const { meId, isEmployer } = useAccount();
 
     const createJob = useCallback((data) => {
         dispatch(jobApiAction.createJob(data));
     }, [dispatch]);
 
-    return (
+    return isEmployer && (
         <CreateJobView typeView={typeView} createJob={createJob} />
     );
 };

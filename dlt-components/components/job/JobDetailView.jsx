@@ -32,7 +32,7 @@ JobField.propTypes = {
 };
 
 const JobDetailView = (props) => {
-    const { data, style, onFollow, onDelete } = props;
+    const { data, isOwn, style, onFollow, onDelete } = props;
 
     const { 
         id,
@@ -190,8 +190,10 @@ const JobDetailView = (props) => {
                     <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
                         <span style={{ flex: 1, display: 'flex', gap: 8 }}>
                             <Button type="primary" shape="default" icon={<SendOutlined />}>Gửi hồ sơ</Button>
-                            <Button icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
-                            <Button icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
+                            {isOwn
+                                ? <Button icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
+                                : <Button icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
+                            }
                         </span>
                         <JobField title="Lượt xem" Icon={EyeOutlined} value={totalView || 0} fontSize={token.fontSizeSM} color={token.colorTextBase}/>
                     </div>
@@ -242,6 +244,7 @@ JobDetailView.propTypes = {
         description: PropTypes.string,
         totalView: PropTypes.number,
     }),
+    isOwn: PropTypes.bool,
     style: PropTypes.object,
     onFollow: PropTypes.func,
     onDelete: PropTypes.func,
