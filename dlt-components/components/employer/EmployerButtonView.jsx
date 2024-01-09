@@ -7,7 +7,7 @@ import EmployerLogoContainer from '@dlt-components/components/employer/employerL
 import EmployerNameContainer from '@dlt-components/components/employer/employerName/EmployerNameContainer';
 import { showEmployerInfoBar } from '@dlt-components/components/inforBar/global/infoBarGlobal';
 
-const EmployerView = (props) => {
+const EmployerButtonView = (props) => {
     const { data } = props;
 
     const { token } = theme.useToken();
@@ -51,7 +51,7 @@ const EmployerView = (props) => {
     );
 };
 
-EmployerView.propTypes = {
+EmployerButtonView.propTypes = {
     data: PropTypes.shape({
         id: PropTypes.string.isRequired,
         name: PropTypes.string,
@@ -61,6 +61,6 @@ EmployerView.propTypes = {
     }),
 };
 
-EmployerView.defaultProps = {};
+EmployerButtonView.defaultProps = {};
 
-export default EmployerView;
+export default EmployerButtonView;

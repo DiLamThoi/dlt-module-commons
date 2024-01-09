@@ -6,6 +6,7 @@ import { CloseCircleOutlined } from '@ant-design/icons';
 import { JOB_TYPE_VIEW } from '@dlt-components/components/job/constants/jobConstants';
 import { INFOBAR_TYPE } from '../constants/infoBarConstants';
 import EmployerContainer from '@dlt-components/components/employer/EmployerContainer';
+import { EMPLOYER_TYPE_VIEW } from '@dlt-components/components/employer/constants/employerConstants';
 const { Sider } = Layout;
 
 const subject = new Subject(null);
@@ -54,7 +55,7 @@ const InfoBarGlobal = () => {
         case INFOBAR_TYPE.JOB:
             return <JobContainer key={id} jobId={id} typeView={JOB_TYPE_VIEW.DETAIL} />;
         case INFOBAR_TYPE.EMPLOYER:
-            return <EmployerContainer key={id} employerId={id}/>;
+            return <EmployerContainer key={id} employerId={id} typeView={EMPLOYER_TYPE_VIEW.DETAIL}/>;
         default:
             return null;
         }

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
@@ -16,9 +16,9 @@ const JobField = (props) => {
     const { title, value, Icon, fontSize = token.fontSizeLG, color = token.colorTextSecondary, valueColor } = props;
     return (
         <span style={{ color, fontSize }}>
-            {Icon && <Icon style={{ paddingRight: 8 }}/>}
+            {Icon && <Icon style={{ marginRight: 8 }}/>}
             {title}:
-            <span style={{ paddingLeft: 8, color: valueColor || color }}>{value}</span>
+            <span style={{ marginLeft: 8, color: valueColor || color }}>{value}</span>
         </span>
     );
 };
@@ -32,7 +32,7 @@ JobField.propTypes = {
 };
 
 const JobDetailView = (props) => {
-    const { data, onFollow, onDelete } = props;
+    const { data, style, onFollow, onDelete } = props;
 
     const { 
         id,
@@ -142,14 +142,35 @@ const JobDetailView = (props) => {
         onDelete(id);
     }, [id, onDelete]);
 
+    // eslint-disable-next-line react/prop-types
+    const Box = memo(({ label, children }) => (
+        <div
+            style={{
+                display: 'flex',
+                width: '100%',
+                flexDirection: 'column',
+                gap: 8,
+                backgroundColor: token.colorBgBase,
+                boxShadow: token.boxShadow,
+                borderRadius: token.borderRadius,
+                padding: token.paddingSM,
+            }}
+        >
+            {label && (<span style={{ color: token.colorTextBase, fontSize: token.fontSizeXL, fontWeight: token.fontWeightStrong }}>
+                {label}
+            </span>)}
+            {children}
+        </div>
+    ));
+
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: token.paddingSM }} direction="vertical">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: token.paddingSM, ...style }}>
             <div
                 style={{
                     display: 'flex',
                     width: '100%',
                     alignItems: 'center',
-                    gap: 8,
+                    gap: 16,
                     backgroundColor: token.colorBgBase,
                     boxShadow: token.boxShadow,
                     borderRadius: token.borderRadius,
@@ -176,70 +197,24 @@ const JobDetailView = (props) => {
                     </div>
                 </span>
             </div>
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    width: '100%',
-                    gap: 8,
-                    backgroundColor: token.colorBgBase,
-                    boxShadow: token.boxShadow,
-                    borderRadius: token.borderRadius,
-                    padding: token.paddingSM,
-                }}
-            >
-                <span style={{ color: token.colorTextBase, fontSize: token.fontSizeXL, fontWeight: token.fontWeightStrong }}>
-                    Thông tin chung
-                </span>
-                <span style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: token.paddingXS }}>
-                    <JobField title="Thời gian thử việc" Icon={ClockCircleOutlined} value={probationTimeString}/>
-                    <JobField title="Yêu cầu giới tính" Icon={UserSwitchOutlined} value={genderString}/>
-                    <JobField title="Số lượng cần tuyển" Icon={TeamOutlined} value={applyCount}/>
-                    <JobField title="Hình thức làm việc" Icon={FormOutlined} value={methodString}/>
-                    <JobField title="Độ tuổi" Icon={LineHeightOutlined} value={ageString}/>
-                    <JobField title="Bằng cấp" Icon={FileDoneOutlined} value={degreeString}/>
-                    <JobField title="Yêu cầu kinh nghiệm" Icon={UserSwitchOutlined} value={experienceString}/>
-                </span>
-            </div>
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    width: '100%',
-                    gap: 8,
-                    backgroundColor: token.colorBgBase,
-                    boxShadow: token.boxShadow,
-                    borderRadius: token.borderRadius,
-                    padding: token.paddingSM,
-                }}
-            >
-                <span style={{ color: token.colorTextBase, fontSize: token.fontSizeXL, fontWeight: token.fontWeightStrong }}>
-                    Mô tả công việc
-                </span>
-                <div>
-                    <Input.TextArea value={description} readOnly autoSize bordered={false} />
-                </div>
-            </div>
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    width: '100%',
-                    gap: 8,
-                    backgroundColor: token.colorBgBase,
-                    boxShadow: token.boxShadow,
-                    borderRadius: token.borderRadius,
-                    padding: token.paddingSM,
-                }}
-            >
-                <span style={{ color: token.colorTextBase, fontSize: token.fontSizeXL, fontWeight: token.fontWeightStrong }}>
-                    Địa chỉ làm việc
-                </span>
+            <Box label="Thông tin chung">
+                <JobField title="Thời gian thử việc" Icon={ClockCircleOutlined} value={probationTimeString}/>
+                <JobField title="Yêu cầu giới tính" Icon={UserSwitchOutlined} value={genderString}/>
+                <JobField title="Số lượng cần tuyển" Icon={TeamOutlined} value={quantity}/>
+                <JobField title="Hình thức làm việc" Icon={FormOutlined} value={methodString}/>
+                <JobField title="Độ tuổi" Icon={LineHeightOutlined} value={ageString}/>
+                <JobField title="Bằng cấp" Icon={FileDoneOutlined} value={degreeString}/>
+                <JobField title="Yêu cầu kinh nghiệm" Icon={UserSwitchOutlined} value={experienceString}/>
+            </Box>
+            <Box label="Mô tả công việc">
+                <Input.TextArea value={description} readOnly autoSize bordered={false} />
+            </Box>
+            <Box label="Địa chỉ làm việc">
                 <span style={{ color: token.colorTextSecondary }}>
                     <EnvironmentOutlined style={{ marginRight: token.marginXS }} />
                     <EmployerAddressContainer employerId={employerId}/>
                 </span>
-            </div>
+            </Box>
         </div>
     );
 };
@@ -267,11 +242,13 @@ JobDetailView.propTypes = {
         description: PropTypes.string,
         totalView: PropTypes.number,
     }),
+    style: PropTypes.object,
     onFollow: PropTypes.func,
     onDelete: PropTypes.func,
 };
 
 JobDetailView.defaultProps = {
+    style: {},
     onFollow: noop,
     onDelete: noop,
 };
