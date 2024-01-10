@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import WrapperScreen from '../WrapperScreen';
 import useAccount from '@dlt-components/hooks/useAccount';
 import EmployerContainer from '@dlt-components/components/employer/EmployerContainer';
+import UserProfileContainer from '@dlt-components/components/user/UserProfileContainer';
 
 const ProfileScreen = () => {
     const dispatch = useDispatch();
@@ -10,8 +11,8 @@ const ProfileScreen = () => {
     return (
         <WrapperScreen>
             {isEmployer ? (
-                <EmployerContainer employerId={meId}/>
-            ) : 123}
+                <EmployerContainer employerId={meId} />
+            ) : <UserProfileContainer userId={meId} />}
         </WrapperScreen>
     );
 };
