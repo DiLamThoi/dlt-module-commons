@@ -1,0 +1,18 @@
+import { createAction } from '@reduxjs/toolkit';
+import userSlice from '../slice/userSlice';
+import hasUserSlice from '../slice/hasUserSlice';
+
+export const USER_ACTION = {};
+
+export const userUiAction = userSlice.actions;
+
+export const hasUserUiAction = hasUserSlice.actions;
+
+export const userApiAction = {};
+
+const userAction = {
+    edgeAction: hasUserUiAction,
+    objectAction: userUiAction,
+    apiAction: userApiAction,
+};
+export default userAction;

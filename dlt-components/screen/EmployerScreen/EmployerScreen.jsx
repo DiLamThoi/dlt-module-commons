@@ -9,6 +9,7 @@ import { employerApiAction } from '@dlt-object-base/dlt-employer/actions/employe
 import hasEmployerSelector from '@dlt-object-base/dlt-employer/selector/hasEmployerSelector';
 import EmployerContainer from '@dlt-components/components/employer/EmployerContainer';
 import { EMPLOYER_TYPE_VIEW } from '@dlt-components/components/employer/constants/employerConstants';
+import WrapperScreen from '../WrapperScreen';
 
 const EmployerScreen = () => {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const EmployerScreen = () => {
     }, [dispatch]);
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: 8 }}>
+        <WrapperScreen>
             <Row gutter={[16, 16]}>
                 {employerIds.map((employerId) => (
                     <Col key={employerId} xs={24} sm={24} md={12} lg={8} xl={6}>
@@ -27,7 +28,7 @@ const EmployerScreen = () => {
                     </Col>
                 ))}
             </Row>
-        </div>
+        </WrapperScreen>
     );
 };
 
