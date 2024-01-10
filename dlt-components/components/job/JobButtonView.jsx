@@ -17,7 +17,7 @@ const JobButtonView = (props) => {
 
     const { token } = theme.useToken();
 
-    const jobSalary = `${salaryMin}-${salaryMax} ${salaryUnit || 'triệu VND'}`;
+    const jobSalary = `${salaryMin} - ${salaryMax} ${salaryUnit || 'triệu VND'}`;
 
     const onShowJobDetail = useCallback(() => {
         showJobInfoBar(id);
