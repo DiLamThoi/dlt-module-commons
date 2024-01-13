@@ -1,5 +1,3 @@
-import { clearDeep } from '@dlt-module-base/utils/lodash';
-
 // Thêm mới 1 object
 const add = (state, action) => {
     const { data } = action.payload;
@@ -29,7 +27,7 @@ const patch = (state, action) => {
 // Xóa 1 object
 const remove = (state, action) => {
     const { id } = action.payload;
-    if (state[id]) clearDeep(state[id]);
+    if (state[id]) delete state[id];
     return state;
 };
 
@@ -49,7 +47,7 @@ const addList = (state, action) => {
 const removeList = (state, action) => {
     const { ids = [] } = action.payload;
     ids.forEach((id) => {
-        if (state[id]) clearDeep(state[id]);
+        if (state[id]) delete state[id];
     });
     return state;
 };

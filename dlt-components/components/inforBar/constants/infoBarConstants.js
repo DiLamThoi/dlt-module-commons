@@ -1,0 +1,8 @@
+const INFOBAR_TYPE = {
+    JOB: 'INFOBAR_TYPE.JOB',
+    EMPLOYER: 'INFOBAR_TYPE.EMPLOYER',
+};
+
+export {
+    INFOBAR_TYPE,
+};

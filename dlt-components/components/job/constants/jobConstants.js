@@ -17,7 +17,7 @@ const JOB_FIELD = {
     SALARY_MAX: 'salaryMax',
     DESCRIPTION: 'description',
     TOTAL_VIEW: 'totalView',
-    // EMPLOYER: 'employerId',
+    EMPLOYER: 'employerId',
 };
 
 // TruongNBN: hiện tại fix cứng các phương thức làm việc. Xử lý server sau
@@ -61,10 +61,16 @@ const JOB_GENDER = {
     FEMALE: 'JOB_GENDER.FEMALE',
 };
 
+const JOB_TYPE_VIEW = {
+    BUTTON: 'JOB_TYPE_VIEW.BUTTON',
+    DETAIL: 'JOB_TYPE_VIEW.DETAIL',
+};
+
 export {
     JOB_FIELD,
     JOB_METHOD,
     JOB_DEGREE,
     JOB_EXPERIENCE,
     JOB_GENDER,
+    JOB_TYPE_VIEW,
 };

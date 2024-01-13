@@ -3,56 +3,42 @@ import PropTypes from 'prop-types';
 
 // Components
 import { Button, theme } from 'antd';
-import { HeartOutlined } from '@ant-design/icons';
+import { DeleteOutlined, HeartOutlined } from '@ant-design/icons';
 import EmployerLogoContainer from '@dlt-components/components/employer/employerLogo/EmployerLogoContainer';
 import EmployerNameContainer from '@dlt-components/components/employer/employerName/EmployerNameContainer';
 import EmployerAddressContainer from '@dlt-components/components/employer/employerAddress/EmployerAddressContainer';
 import { noop } from 'lodash/util';
+import { showJobInfoBar } from '@dlt-components/components/inforBar/global/infoBarGlobal';
 
-const JobView = (props) => {
-    const { data, onFollowJob } = props;
+const JobButtonView = (props) => {
+    const { data, isOwn, onFollow, onDelete } = props;
 
-    const { 
-        id,
-        title,
-        levelId,
-        employerId,
-        quantity,
-        methodId,
-        probationTime,
-        salaryUnit,
-        salaryMin,
-        salaryMax,
-        applyStartTime,
-        applyEndTime,
-        applyCount,
-        ageMin,
-        ageMax,
-        degreeId,
-        genderId,
-        description,
-        totalView,
-    } = data;
+    const { id, title, employerId, salaryUnit, salaryMin, salaryMax } = data;
 
     const { token } = theme.useToken();
 
-    const jobSalary = `${salaryMin}-${salaryMax} ${salaryUnit}`;
+    const jobSalary = `${salaryMin} - ${salaryMax} ${salaryUnit || 'triệu VND'}`;
 
-    const onShowJobDetail = useCallback((e) => {
-        //
-    }, []);
+    const onShowJobDetail = useCallback(() => {
+        showJobInfoBar(id);
+    }, [id]);
 
     const onClickFollowJobButton = useCallback((e) => {
-        onFollowJob();
+        onFollow(id);
         e.stopPropagation();
-    }, [onFollowJob]);
+    }, [id, onFollow]);
+
+    const onClickDeleteJobButton = useCallback((e) => {
+        onDelete(id);
+        e.stopPropagation();
+    }, [id, onDelete]);
 
     return (
         <Button
             onClick={onShowJobDetail}
             style={{
                 width: '100%',
-                minWidth: 300,
+                minWidth: 200,
                 height: 'max-content',
                 paddingLeft: token.paddingContentHorizontalSM,
                 paddingRight: token.paddingContentHorizontalSM,
@@ -62,8 +48,11 @@ const JobView = (props) => {
         >
             <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'start' }}>
                 <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
-                    <span style={{ flex: '1', color: token.colorTextSecondary, fontWeight: token.fontWeightStrong }}>{title}</span>
-                    <Button type="text" icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
+                    <span style={{ flex: '1', color: token.colorTextBase, fontWeight: token.fontWeightStrong }}>{title}</span>
+                    {isOwn
+                        && <Button icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
+                        // : <Button icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
+                    }
                 </div>
                 <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 8 }}>
                     <span style={{ display: 'block', width: 100 }}>
@@ -84,7 +73,7 @@ const JobView = (props) => {
     );
 };
 
-JobView.propTypes = {
+JobButtonView.propTypes = {
     data: PropTypes.shape({
         id: PropTypes.string.isRequired,
         title: PropTypes.string,
@@ -106,11 +95,14 @@ JobView.propTypes = {
         description: PropTypes.string,
         totalView: PropTypes.number,
     }),
-    onFollowJob: PropTypes.func,
+    isOwn: PropTypes.bool,
+    onFollow: PropTypes.func,
+    onDelete: PropTypes.func,
 };
 
-JobView.defaultProps = {
-    onFollowJob: noop,
+JobButtonView.defaultProps = {
+    onFollow: noop,
+    onDelete: noop,
 };
 
-export default JobView;
+export default JobButtonView;

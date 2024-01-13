@@ -2,19 +2,19 @@ import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Typography, Form, Input, Divider, Select } from 'antd';
 import { LoginOutlined } from '@ant-design/icons';
-import { ROLE_LOGIN } from './constants/loginConstants';
 import { noop } from 'lodash/util';
+import { ACCOUNT_ROLE } from '@dlt-components/constants/authConstants';
 
 const LoginView = (props) => {
     const { onLogin, navigateRegister } = props;
 
     const RoleOptions = useMemo(() => ([
         {
-            value: ROLE_LOGIN.USER,
+            value: ACCOUNT_ROLE.USER,
             label: 'Người tìm việc',
         },
         {
-            value: ROLE_LOGIN.EMPLOYER,
+            value: ACCOUNT_ROLE.EMPLOYER,
             label: 'Nhà tuyển dụng',
         },
     ]), []);
@@ -44,7 +44,7 @@ const LoginView = (props) => {
             <Form
                 size="large"
                 style={{ padding: '0px 8px' }}
-                initialValues={{ role: ROLE_LOGIN.USER }}
+                initialValues={{ role: ACCOUNT_ROLE.USER }}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"

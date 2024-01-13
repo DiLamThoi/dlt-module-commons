@@ -1,5 +1,3 @@
-import { clearDeep } from '@dlt-module-base/utils/lodash';
-
 // Tạo mới edge
 const create = (state, parentId, searchParams = {}) => {
     if (state[parentId]) throw new Error('EdgeReducer::create parentId already exists');
@@ -48,7 +46,7 @@ const remove = (state, action) => {
     if (!state[parentId]) throw new Error('EdgeReducer::remove parentId does not exists');
     if (!state[parentId].itemIds.includes(id)) {
         state[parentId].itemIds.filter((itemId) => itemId !== id);
-        clearDeep(state[parentId].items[id]);
+        delete state[parentId].items[id];
         state[parentId].total -= 1;
     }
     return state;
@@ -57,7 +55,7 @@ const remove = (state, action) => {
 // Xóa edge
 const clear = (state, action) => {
     const { parentId } = action.payload;
-    if (state[parentId]) clearDeep(state[parentId]);
+    if (state[parentId]) delete state[parentId];
 };
 
 // Thêm mới nhiều edge
@@ -81,7 +79,7 @@ const removeList = (state, action) => {
         if (!state[parentId]) throw new Error('EdgeReducer::remove parentId does not exists');
         if (!state[parentId].itemIds.includes(id)) {
             state[parentId].itemIds.filter((itemId) => itemId !== id);
-            clearDeep(state[parentId].items[id]);
+            delete state[parentId].items[id];
             state[parentId].total -= 1;
         }
         return state;
@@ -92,7 +90,7 @@ const removeList = (state, action) => {
 const clearList = (state, action) => {
     const { parentIds } = action.payload;
     parentIds.forEach((parentId) => {
-        if (state[parentId]) clearDeep(state[parentId]);
+        if (state[parentId]) delete state[parentId];
     });
 };
 

@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Col, Row } from 'antd';
+import { Col, Row, theme } from 'antd';
 import JobContainer from './JobContainer';
+import { JOB_TYPE_VIEW } from './constants/jobConstants';
 
 const JobListView = (props) => {
     const { jobIds } = props;
 
+    const { token } = theme.useToken();
+
     return (
-        <Row gutter={[16, 16]}>
+        <div style={{ padding: token.padding, display: 'flex', flexDirection: 'column', gap: 8 }}>
             {jobIds.map((jobId) => (
-                <Col key={jobId} xs={24} sm={24} md={24} lg={12} xl={8}>
-                    <JobContainer key={jobId} jobId={jobId}/>
-                </Col>
+                <JobContainer key={jobId} jobId={jobId} typeView={JOB_TYPE_VIEW.BUTTON}/>
             ))}
-        </Row>
+        </div>
     );
 };
 

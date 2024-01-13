@@ -3,20 +3,22 @@ import axios from 'axios';
 import { useSignIn } from 'react-auth-kit';
 import { useNavigate } from 'react-router-dom';
 import LoginView from './LoginView';
-import { ROLE_LOGIN } from './constants/loginConstants';
+import { DLT_DOMAIN } from '@dlt-object-base/dlt-config/apiConfig';
+import { ACCOUNT_ROLE } from '@dlt-components/constants/authConstants';
 
 const LoginContainer = () => {
     const signIn = useSignIn();
     const navigate = useNavigate();
 
-    const onLogin = useCallback(async (userName, password, role = ROLE_LOGIN.USER) => {
+    const onLogin = useCallback(async (userName, password, role = ACCOUNT_ROLE.USER) => {
         const data = { userName, password, role };
-        axios.post('http://server.truongnbn.com:8080/login', { data }).then((res) => {
+        axios.post(`${DLT_DOMAIN}/login`, { data }).then((res) => {
+            const { token, meId } = res.data; 
             signIn({
-                token: res.data.token,
+                token,
                 expiresIn: 3600,
                 tokenType: 'Bearer',
-                authState: { meId: res.data.meId },
+                authState: { meId, role },
             });
         }).catch((err) => {});
     }, [signIn]);

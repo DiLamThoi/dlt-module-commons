@@ -1,20 +1,26 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
 import { Button, theme } from 'antd';
 import EmployerLogoContainer from '@dlt-components/components/employer/employerLogo/EmployerLogoContainer';
 import EmployerNameContainer from '@dlt-components/components/employer/employerName/EmployerNameContainer';
+import { showEmployerInfoBar } from '@dlt-components/components/inforBar/global/infoBarGlobal';
 
-const EmployerView = (props) => {
+const EmployerButtonView = (props) => {
     const { data } = props;
 
     const { token } = theme.useToken();
 
     const { id, name, status, logo, address } = data;
 
+    const onShowEmployerDetail = useCallback(() => {
+        showEmployerInfoBar(id);
+    }, [id]);
+
     return (
         <Button
+            onClick={onShowEmployerDetail}
             style={{
                 width: '100%',
                 minWidth: 200,
@@ -45,7 +51,7 @@ const EmployerView = (props) => {
     );
 };
 
-EmployerView.propTypes = {
+EmployerButtonView.propTypes = {
     data: PropTypes.shape({
         id: PropTypes.string.isRequired,
         name: PropTypes.string,
@@ -55,6 +61,6 @@ EmployerView.propTypes = {
     }),
 };
 
-EmployerView.defaultProps = {};
+EmployerButtonView.defaultProps = {};
 
-export default EmployerView;
+export default EmployerButtonView;
