@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Button, theme } from 'antd';
 import EmployerLogoContainer from '@dlt-components/components/employer/employerLogo/EmployerLogoContainer';
 import EmployerNameContainer from '@dlt-components/components/employer/employerName/EmployerNameContainer';
-import { showEmployerInfoBar } from '@dlt-components/components/inforBar/global/infoBarGlobal';
+import { InfoBarInstant } from '@dlt-components/components/inforBar/global/infoBarGlobal';
 
 const EmployerButtonView = (props) => {
     const { data } = props;
@@ -15,7 +15,7 @@ const EmployerButtonView = (props) => {
     const { id, name, status, logo, address } = data;
 
     const onShowEmployerDetail = useCallback(() => {
-        showEmployerInfoBar(id);
+        InfoBarInstant.showEmployerInfoBar(id);
     }, [id]);
 
     return (

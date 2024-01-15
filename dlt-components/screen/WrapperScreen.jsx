@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ScrollbarBase from '@dlt-components/components/base/scrollbar/ScrollBarBase';
 
 const WrapperScreen = ({ children }) => (
-    <div style={{ display: 'flex', flexDirection: 'column', padding: 8, height: '100vh', overflowY: 'auto' }}>
+    <ScrollbarBase style={{ display: 'flex', flexDirection: 'column', padding: 8, height: '100vh' }}>
         {children}
-    </div>
+    </ScrollbarBase>
 );
 
 WrapperScreen.propTypes = {
-    children: PropTypes.element,
+    children: PropTypes.node,
 };
 WrapperScreen.defaultProps = {};
 

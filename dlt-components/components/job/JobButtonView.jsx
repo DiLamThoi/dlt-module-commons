@@ -8,7 +8,8 @@ import EmployerLogoContainer from '@dlt-components/components/employer/employerL
 import EmployerNameContainer from '@dlt-components/components/employer/employerName/EmployerNameContainer';
 import EmployerAddressContainer from '@dlt-components/components/employer/employerAddress/EmployerAddressContainer';
 import { noop } from 'lodash/util';
-import { showJobInfoBar } from '@dlt-components/components/inforBar/global/infoBarGlobal';
+import { InfoBarInstant } from '@dlt-components/components/inforBar/global/infoBarGlobal';
+import { useGroupJobContext } from '@dlt-components/context/GroupIssueContext';
 
 const JobButtonView = (props) => {
     const { data, isOwn, onFollow, onDelete } = props;
@@ -16,11 +17,12 @@ const JobButtonView = (props) => {
     const { id, title, employerId, salaryUnit, salaryMin, salaryMax } = data;
 
     const { token } = theme.useToken();
+    const { selectedJobId } = useGroupJobContext();
 
     const jobSalary = `${salaryMin} - ${salaryMax} ${salaryUnit || 'triệu VND'}`;
 
     const onShowJobDetail = useCallback(() => {
-        showJobInfoBar(id);
+        InfoBarInstant.showJobInfoBar(id);
     }, [id]);
 
     const onClickFollowJobButton = useCallback((e) => {
@@ -34,8 +36,9 @@ const JobButtonView = (props) => {
     }, [id, onDelete]);
 
     return (
-        <Button
+        <div
             onClick={onShowJobDetail}
+            type="text"
             style={{
                 width: '100%',
                 minWidth: 200,
@@ -44,14 +47,16 @@ const JobButtonView = (props) => {
                 paddingRight: token.paddingContentHorizontalSM,
                 paddingTop: token.paddingContentVerticalSM,
                 paddingBottom: token.paddingContentVerticalSM,
+                borderRadius: token.borderRadiusLG,
+                backgroundColor: id === selectedJobId ? token.colorBgTextHover : token.colorBgBase,
             }}
         >
             <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'start' }}>
                 <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
                     <span style={{ flex: '1', color: token.colorTextBase, fontWeight: token.fontWeightStrong }}>{title}</span>
                     {isOwn
-                        && <Button icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
-                        // : <Button icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
+                        ? <Button type="text" shape="circle" icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
+                        : <Button type="text" shape="circle" icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
                     }
                 </div>
                 <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 8 }}>
@@ -69,7 +74,7 @@ const JobButtonView = (props) => {
                     </span>
                 </div>
             </div>
-        </Button>
+        </div>
     );
 };
 
@@ -80,7 +85,7 @@ JobButtonView.propTypes = {
         levelId: PropTypes.string,
         employerId: PropTypes.string,
         quantity: PropTypes.number,
-        methodId: PropTypes.number,
+        methodId: PropTypes.string,
         probationTime: PropTypes.number,
         salaryUnit: PropTypes.string,
         salaryMin: PropTypes.number,

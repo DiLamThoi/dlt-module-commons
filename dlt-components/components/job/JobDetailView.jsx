@@ -24,8 +24,8 @@ const JobField = (props) => {
 };
 JobField.propTypes = {
     title: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    Icon: PropTypes.element,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    Icon: PropTypes.elementType,
     fontSize: PropTypes.number,
     color: PropTypes.string,
     valueColor: PropTypes.string,
@@ -191,8 +191,8 @@ const JobDetailView = (props) => {
                         <span style={{ flex: 1, display: 'flex', gap: 8 }}>
                             <Button type="primary" shape="default" icon={<SendOutlined />}>Gửi hồ sơ</Button>
                             {isOwn
-                                && <Button icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
-                                // : <Button icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
+                                ? <Button icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
+                                : <Button icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
                             }
                         </span>
                         <JobField title="Lượt xem" Icon={EyeOutlined} value={totalView || 0} fontSize={token.fontSizeSM} color={token.colorTextBase}/>
@@ -228,7 +228,7 @@ JobDetailView.propTypes = {
         levelId: PropTypes.string,
         employerId: PropTypes.string,
         quantity: PropTypes.number,
-        methodId: PropTypes.number,
+        methodId: PropTypes.string,
         experienceId: PropTypes.string,
         probationTime: PropTypes.number,
         salaryUnit: PropTypes.string,
