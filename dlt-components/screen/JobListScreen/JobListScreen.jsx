@@ -9,7 +9,6 @@ import { jobApiAction } from '@dlt-object-base/dlt-job/actions/jobActions';
 import hasJobSelector from '@dlt-object-base/dlt-job/selector/hasJobSelector';
 import CreateJobContainer from '@dlt-components/components/job/createJob/CreateJobContainer';
 import WrapperScreen from '../WrapperScreen';
-import { GroupJobContextProvider } from '@dlt-components/context/GroupIssueContext';
 
 const JobListScreen = () => {
     const dispatch = useDispatch();
@@ -21,9 +20,7 @@ const JobListScreen = () => {
 
     return (
         <WrapperScreen>
-            <GroupJobContextProvider>
-                <JobListContainer jobIds={jobIds} />
-            </GroupJobContextProvider>
+            <JobListContainer jobIds={jobIds} />
             <CreateJobContainer typeView="float" />
         </WrapperScreen>
     );

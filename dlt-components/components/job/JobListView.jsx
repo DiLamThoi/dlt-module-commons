@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Col, Row, theme } from 'antd';
+import { theme } from 'antd';
 import JobContainer from './JobContainer';
 import { JOB_TYPE_VIEW } from './constants/jobConstants';
 
