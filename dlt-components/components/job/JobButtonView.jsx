@@ -9,14 +9,15 @@ import EmployerNameContainer from '@dlt-components/components/employer/employerN
 import EmployerAddressContainer from '@dlt-components/components/employer/employerAddress/EmployerAddressContainer';
 import { noop } from 'lodash/util';
 import { InfoBarInstant } from '@dlt-components/components/inforBar/global/infoBarGlobal';
-import { useGroupJobContext } from '@dlt-components/context/GroupIssueContext';
+import { useGroupJobContext } from '@dlt-components/context/GroupJobContext';
+import { useHover } from '@uidotdev/usehooks';
 
 const JobButtonView = (props) => {
     const { data, isOwn, onFollow, onDelete } = props;
-
     const { id, title, employerId, salaryUnit, salaryMin, salaryMax } = data;
 
     const { token } = theme.useToken();
+    const [ref, hovering] = useHover();
     const { selectedJobId } = useGroupJobContext();
 
     const jobSalary = `${salaryMin} - ${salaryMax} ${salaryUnit || 'triệu VND'}`;
@@ -37,43 +38,38 @@ const JobButtonView = (props) => {
 
     return (
         <div
+            ref={ref}
             onClick={onShowJobDetail}
-            type="text"
             style={{
+                position: 'relative',
                 width: '100%',
                 minWidth: 200,
-                height: 'max-content',
                 cursor: 'pointer',
                 paddingLeft: token.paddingContentHorizontalSM,
                 paddingRight: token.paddingContentHorizontalSM,
                 paddingTop: token.paddingContentVerticalSM,
                 paddingBottom: token.paddingContentVerticalSM,
                 borderRadius: token.borderRadiusLG,
-                backgroundColor: id === selectedJobId ? token.colorBgTextHover : token.colorBgBase,
+                backgroundColor: (id === selectedJobId || hovering) ? token.colorBgTextHover : token.colorBgBase,
             }}
         >
-            <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'start' }}>
-                <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
-                    <span style={{ flex: '1', color: token.colorTextBase, fontWeight: token.fontWeightStrong }}>{title}</span>
-                    {isOwn
-                        ? <Button type="text" shape="circle" icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
-                        : <Button type="text" shape="circle" icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
-                    }
-                </div>
-                <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 8 }}>
-                    <span style={{ display: 'block', width: 100 }}>
-                        <EmployerLogoContainer employerId={employerId} width={100} height={100} style={{ objectFit: 'contain' }} />
+            <div style={{ display: hovering ? 'block' : 'none', position: 'absolute', zIndex: 1, right: 10 }}>
+                {isOwn
+                    ? <Button type="text" shape="circle" icon={<DeleteOutlined />} onClick={onClickDeleteJobButton}/>
+                    : <Button type="text" shape="circle" icon={<HeartOutlined />} onClick={onClickFollowJobButton}/>
+                }
+            </div>
+            <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 8 }}>
+                <span style={{ display: 'block', width: 50 }}>
+                    <EmployerLogoContainer employerId={employerId} width={50} height={50} style={{ objectFit: 'contain' }} />
+                </span>
+                <span style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    <span style={{ color: token.colorTextBase, fontWeight: token.fontWeightStrong }}>{title}</span>
+                    <span style={{ color: token.colorTextSecondary }}>
+                        <span style={{ color: token.pink, marginRight: token.marginXS }}>{jobSalary}</span>
+                        <EmployerAddressContainer employerId={employerId}/>
                     </span>
-                    <span style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                        <span style={{ color: token.colorTextSecondary }}>
-                            <EmployerNameContainer employerId={employerId} />
-                        </span>
-                        <span style={{ color: token.colorTextSecondary }}>{jobSalary}</span>
-                        <span style={{ color: token.colorTextSecondary }}>
-                            <EmployerAddressContainer employerId={employerId}/>
-                        </span>
-                    </span>
-                </div>
+                </span>
             </div>
         </div>
     );

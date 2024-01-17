@@ -37,9 +37,14 @@ const SideBarView = (props) => {
         return(
             <Button
                 key={item.key}
-                onClick={() => onClickItem(item)}
-                style={{ width: '100%', marginBottom: token.marginXS, borderWidth: 0, backgroundColor: selected && token.colorPrimaryBg }}
                 size="large"
+                onClick={() => onClickItem(item)}
+                style={{
+                    width: '100%',
+                    marginBottom: token.marginXS,
+                    borderWidth: 0,
+                    backgroundColor: selected ? token.colorPrimaryBg : token.colorBgBase,
+                }}
             >
                 <span style={{ width: '100%', display: 'flex', color: token.colorTextSecondary, fontWeight: token.fontWeightStrong }}>
                     {item.title}
@@ -49,7 +54,7 @@ const SideBarView = (props) => {
     }, [onClickItem, selectedKey, token]);
 
     return (
-        <div style={{ padding: '24px 8px', display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <div style={{ padding: '24px 8px', display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: token.colorBgBase }}>
             <List size="large" itemLayout="horizontal" dataSource={menuItems} renderItem={renderItem} style={{ flex: 1 }} />
             <Button
                 type="text"

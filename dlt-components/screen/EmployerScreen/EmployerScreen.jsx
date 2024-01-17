@@ -10,6 +10,7 @@ import hasEmployerSelector from '@dlt-object-base/dlt-employer/selector/hasEmplo
 import EmployerContainer from '@dlt-components/components/employer/EmployerContainer';
 import { EMPLOYER_TYPE_VIEW } from '@dlt-components/components/employer/constants/employerConstants';
 import WrapperScreen from '../WrapperScreen';
+import { GroupEmployerContextProvider } from '@dlt-components/context/GroupEmployerContext';
 
 const EmployerScreen = () => {
     const dispatch = useDispatch();
@@ -21,13 +22,13 @@ const EmployerScreen = () => {
 
     return (
         <WrapperScreen>
-            <Row gutter={[16, 16]}>
-                {employerIds.map((employerId) => (
-                    <Col key={employerId} xs={24} sm={24} md={12} lg={8} xl={6}>
+            <GroupEmployerContextProvider>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    {employerIds.map((employerId) => (
                         <EmployerContainer key={employerId} employerId={employerId} typeView={EMPLOYER_TYPE_VIEW.BUTTON}/>
-                    </Col>
-                ))}
-            </Row>
+                    ))}
+                </div>
+            </GroupEmployerContextProvider>
         </WrapperScreen>
     );
 };

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { noop } from 'lodash/util';
 import { FloatButton, Modal, theme } from 'antd';
 import { AppstoreAddOutlined, PlusOutlined } from '@ant-design/icons';
+import ScrollbarBase from '@dlt-components/components/base/scrollbar/ScrollbarBase';
 import JobForm from '../form/JobForm';
 
 const CreateJobView = (props) => {
@@ -56,7 +57,9 @@ const CreateJobView = (props) => {
                         body: { overflow: 'auto', height: '60vh' },
                     }}
                 >
-                    <JobForm onFinish={onCreateJob} onClose={onClose} />
+                    <ScrollbarBase>
+                        <JobForm onFinish={onCreateJob} onClose={onClose} />
+                    </ScrollbarBase>
                 </Modal>
             </React.Fragment>
         );

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import JobListView from './JobListView';
-import { GroupJobContextProvider } from '@dlt-components/context/GroupIssueContext';
+import { GroupJobContextProvider } from '@dlt-components/context/GroupJobContext';
 
 const JobListContainer = (props) => {
     const { jobIds } = props;

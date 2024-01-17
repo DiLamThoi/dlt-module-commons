@@ -49,7 +49,7 @@ const JobSearchBarView = (props) => {
                         width: '100%',
                         display: 'flex',
                         alignItems: 'center',
-                        backgroundColor: token.colorBgBase,
+                        backgroundColor: token.yellow1,
                         padding: token.padding,
                         borderRadius: token.borderRadius,
                         boxShadow: token.boxShadowSecondary,
