@@ -43,6 +43,7 @@ const JobButtonView = (props) => {
                 width: '100%',
                 minWidth: 200,
                 height: 'max-content',
+                cursor: 'pointer',
                 paddingLeft: token.paddingContentHorizontalSM,
                 paddingRight: token.paddingContentHorizontalSM,
                 paddingTop: token.paddingContentVerticalSM,

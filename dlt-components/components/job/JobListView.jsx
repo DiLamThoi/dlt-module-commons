@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { theme } from 'antd';
+
+// Components
 import JobContainer from './JobContainer';
+import JobSearchBarContainer from './searchBar/JobSearchBarContainer';
+
+// Constants
 import { JOB_TYPE_VIEW } from './constants/jobConstants';
 
 const JobListView = (props) => {
@@ -11,6 +16,7 @@ const JobListView = (props) => {
 
     return (
         <div style={{ padding: token.padding, display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <JobSearchBarContainer />
             {jobIds.map((jobId) => (
                 <JobContainer key={jobId} jobId={jobId} typeView={JOB_TYPE_VIEW.BUTTON}/>
             ))}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { noop } from 'lodash/util';
 import { FloatButton, Modal, theme } from 'antd';
 import { AppstoreAddOutlined, PlusOutlined } from '@ant-design/icons';
-import JobForm from './components/JobForm';
+import JobForm from '../form/JobForm';
 
 const CreateJobView = (props) => {
     const { typeView, createJob } = props;

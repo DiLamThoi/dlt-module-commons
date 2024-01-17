@@ -1,9 +1,13 @@
 import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Col, DatePicker, Form, Input, Row, Select, Space, Typography, theme } from 'antd';
-import { JOB_DEGREE, JOB_EXPERIENCE, JOB_FIELD, JOB_GENDER, JOB_METHOD } from '../../constants/jobConstants';
+import { JOB_DEGREE, JOB_EXPERIENCE, JOB_FIELD, JOB_GENDER, JOB_METHOD } from '../constants/jobConstants';
 import viDatePickerLocate from 'antd/es/date-picker/locale/vi_VN';
 import { noop } from 'lodash/util';
+import JobMethodSelect from '../fields/JobMethodSelect';
+import JobDegreeSelect from '../fields/JobDegreeSelect';
+import JobExperienceSelect from '../fields/JobExperienceSelect';
+import JobGenderSelect from '../fields/JobGenderSelect';
 
 const FORM_ITEM_TYPE = {
     INPUT: 'FORM_ITEM_TYPE.INPUT',
@@ -29,43 +33,6 @@ const JobForm = (props) => {
         onFinish(jobData);
         onResetForm();
     }, [onFinish, onResetForm]);
-
-    const JobMethodOptions = useMemo(() => ([
-        { value: JOB_METHOD.FULLTIME_FIXED, label: 'Toàn thời gian cố định' },
-        { value: JOB_METHOD.FULLTIME_TEMP, label: 'Toàn thời gian tạm thời' },
-        { value: JOB_METHOD.PARTIME_FIXED, label: 'Bán thời gian cố định' },
-        { value: JOB_METHOD.PARTIME_TEMP, label: 'Bán thời gian tạm thời' },
-        { value: JOB_METHOD.CONTRACT, label: 'Theo hợp đồng' },
-        { value: JOB_METHOD.INTERN, label: 'Thực tập' },
-        { value: JOB_METHOD.OTHER, label: 'Khác' },
-    ]), []);
-
-    const JobDegreeOptions = useMemo(() => ([
-        { value: JOB_DEGREE.NONE, label: 'Không yêu cầu' },
-        { value: JOB_DEGREE.CERTIFICATE, label: 'Chứng chỉ' },
-        { value: JOB_DEGREE.HIGH_SCHOOL, label: 'Trung học' },
-        { value: JOB_DEGREE.INTERMEDIATE, label: 'Trung cấp' },
-        { value: JOB_DEGREE.COLLEGE, label: 'Cao đẳng' },
-        { value: JOB_DEGREE.UNIVERSITY, label: 'Đại học' },
-        { value: JOB_DEGREE.AFTER_UNIVERSITY, label: 'Trên đại học' },
-    ]), []);
-
-    const JobExperienceOptions = useMemo(() => ([
-        { value: JOB_EXPERIENCE.NONE, label: 'Chưa có kinh nghiệm' },
-        { value: JOB_EXPERIENCE.UNDER_1_YEAR, label: 'Dưới 1 năm' },
-        { value: JOB_EXPERIENCE.ABOUT_1_YEAR, label: '1 năm' },
-        { value: JOB_EXPERIENCE.ABOUT_2_YEAR, label: '2 năm' },
-        { value: JOB_EXPERIENCE.ABOUT_3_YEAR, label: '3 năm' },
-        { value: JOB_EXPERIENCE.ABOUT_4_YEAR, label: '4 năm' },
-        { value: JOB_EXPERIENCE.ABOUT_5_YEAR, label: '5 năm' },
-        { value: JOB_EXPERIENCE.OVER_5_YEAR, label: 'Trên 5 năm' },
-    ]), []);
-
-    const JobGenderOptions = useMemo(() => ([
-        { value: JOB_GENDER.NONE, label: 'Không yêu cầu' },
-        { value: JOB_GENDER.MALE, label: 'Nam' },
-        { value: JOB_GENDER.FEMALE, label: 'Nữ' },
-    ]), []);
 
     const horizontal = useMemo(() => ({
         labelCol: {
@@ -168,17 +135,17 @@ const JobForm = (props) => {
             <Row gutter={[0, 0]} >
                 <Col key={JOB_FIELD.METHOD} xs={24} sm={24} md={24} lg={12} xl={8}>
                     <Form.Item name={JOB_FIELD.METHOD} label="Hình thức làm việc" {...vertical} rules={getRuleByKey(JOB_FIELD.METHOD)}>
-                        <Select placeholder="Chọn" options={JobMethodOptions}/>
+                        <JobMethodSelect placeholder="Chọn" />
                     </Form.Item>
                 </Col>
                 <Col key={JOB_FIELD.DEGREE} xs={24} sm={24} md={24} lg={12} xl={8}>
                     <Form.Item name={JOB_FIELD.DEGREE} label="Trình độ học vấn" {...vertical} rules={getRuleByKey(JOB_FIELD.DEGREE)}>
-                        <Select placeholder="Chọn" options={JobDegreeOptions}/>
+                        <JobDegreeSelect placeholder="Chọn" />
                     </Form.Item>
                 </Col>
                 <Col key={JOB_FIELD.EXPERIENCE} xs={24} sm={24} md={24} lg={12} xl={8}>
                     <Form.Item name={JOB_FIELD.EXPERIENCE} label="Kinh nghiệm" {...vertical} rules={getRuleByKey(JOB_FIELD.EXPERIENCE)}>
-                        <Select placeholder="Chọn" options={JobExperienceOptions}/>
+                        <JobExperienceSelect placeholder="Chọn" />
                     </Form.Item>
                 </Col>
                 <Col key={JOB_FIELD.AGE_MIN} xs={12} sm={12} md={12} lg={6} xl={4}>
@@ -193,7 +160,7 @@ const JobForm = (props) => {
                 </Col>
                 <Col key={JOB_FIELD.GENDER} xs={24} sm={24} md={24} lg={12} xl={8}>
                     <Form.Item name={JOB_FIELD.GENDER} label="Yêu cầu giới tính" {...vertical} rules={getRuleByKey(JOB_FIELD.GENDER)}>
-                        <Select placeholder="Chọn" options={JobGenderOptions}/>
+                        <JobGenderSelect placeholder="Chọn" />
                     </Form.Item>
                 </Col>
                 <Col key={JOB_FIELD.QUANTITY} xs={24} sm={24} md={24} lg={12} xl={8}>
