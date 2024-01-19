@@ -1,19 +1,20 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import { Input, theme } from 'antd';
+import { Input } from 'antd';
 import EmployerLogoContainer from '@dlt-components/components/employer/employerLogo/EmployerLogoContainer';
 import EmployerNameContainer from '@dlt-components/components/employer/employerName/EmployerNameContainer';
 import EmployerAddressContainer from './employerAddress/EmployerAddressContainer';
 import { EnvironmentOutlined, GlobalOutlined, MailOutlined } from '@ant-design/icons';
 import JobContainer from '@dlt-components/components/job/JobContainer';
 import { JOB_TYPE_VIEW } from '../job/constants/jobConstants';
+import { useToken } from '@dlt-components/hooks';
 
 const EmployerDetailView = (props) => {
     const { data, jobIds, style } = props;
 
-    const { token } = theme.useToken();
+    const token = useToken();
 
     const { id, email, name, status, logo, address, website, description } = data;
 

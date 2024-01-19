@@ -2,17 +2,16 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import { Button, theme } from 'antd';
 import EmployerLogoContainer from '@dlt-components/components/employer/employerLogo/EmployerLogoContainer';
 import EmployerNameContainer from '@dlt-components/components/employer/employerName/EmployerNameContainer';
 import { InfoBarInstant } from '@dlt-components/components/inforBar/global/infoBarGlobal';
-import { useHover } from '@uidotdev/usehooks';
 import { useGroupEmployerContext } from '@dlt-components/context/GroupEmployerContext';
+import { useHover, useToken } from '@dlt-components/hooks';
 
 const EmployerButtonView = (props) => {
     const { data } = props;
 
-    const { token } = theme.useToken();
+    const token = useToken();
     const [ref, hovering] = useHover();
     const { selectedEmployerId } = useGroupEmployerContext();
 

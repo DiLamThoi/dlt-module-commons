@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { theme } from 'antd';
 
 // Components
 import JobContainer from './JobContainer';
@@ -8,11 +7,12 @@ import JobSearchBarContainer from './searchBar/JobSearchBarContainer';
 
 // Constants
 import { JOB_TYPE_VIEW } from './constants/jobConstants';
+import { useToken } from '@dlt-components/hooks';
 
 const JobListView = (props) => {
     const { jobIds } = props;
 
-    const { token } = theme.useToken();
+    const token = useToken();
 
     return (
         <div style={{ padding: token.padding, display: 'flex', flexDirection: 'column', gap: 8 }}>

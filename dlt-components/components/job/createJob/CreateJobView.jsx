@@ -1,14 +1,15 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash/util';
-import { FloatButton, Modal, theme } from 'antd';
+import { FloatButton, Modal } from 'antd';
 import { AppstoreAddOutlined, PlusOutlined } from '@ant-design/icons';
 import ScrollbarBase from '@dlt-components/components/base/scrollbar/ScrollbarBase';
 import JobForm from '../form/JobForm';
+import { useToken } from '@dlt-components/hooks';
 
 const CreateJobView = (props) => {
     const { typeView, createJob } = props;
-    const { token } = theme.useToken();
+    const token = useToken();
 
     const [open, setOpen] = useState(false);
 

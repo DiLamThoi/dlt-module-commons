@@ -6,7 +6,7 @@ import JobButtonView from './JobButtonView';
 import JobDetailView from './JobDetailView';
 import { jobApiAction } from '@dlt-object-base/dlt-job/actions/jobActions';
 import { JOB_FIELD, JOB_TYPE_VIEW } from './constants/jobConstants';
-import useAccount from '@dlt-components/hooks/useAccount';
+import { useAccount } from '@dlt-components/hooks';
 import { employerApiAction } from '@dlt-object-base/dlt-employer/actions/employerActions';
 import employerSelector from '@dlt-object-base/dlt-employer/selector/employerSelector';
 
@@ -22,7 +22,6 @@ const JobContainer = (props) => {
     useEffect(() => {
         if (jobData && jobData[JOB_FIELD.EMPLOYER] && !employer) dispatch(employerApiAction.fetchAnEmployer(jobData[JOB_FIELD.EMPLOYER]));
     }, [dispatch, employer, jobData]);
-
 
     const onFollowJob = useCallback(() => {
         // Dispath Folowjob action here

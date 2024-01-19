@@ -1,14 +1,12 @@
 import React from 'react';
 import WrapperScreen from '../WrapperScreen';
-import useAccount from '@dlt-components/hooks/useAccount';
+import { useAccount, useToken } from '@dlt-components/hooks';
 import EmployerContainer from '@dlt-components/components/employer/EmployerContainer';
 import UserProfileContainer from '@dlt-components/components/user/UserProfileContainer';
-import { CloseCircleOutlined } from '@ant-design/icons';
-import { Button, theme } from 'antd';
 
 const ProfileScreen = () => {
     const { meId, isEmployer } = useAccount();
-    const { token } = theme.useToken();
+    const token = useToken();
     return (
         <WrapperScreen>
             <div

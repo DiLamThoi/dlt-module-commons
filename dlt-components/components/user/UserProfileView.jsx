@@ -1,13 +1,14 @@
-import React, { memo, useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Collapse, Form, Input, theme } from 'antd';
+import { Collapse, Form } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import { USER_PROFILE_TYPE } from './constants/userConstants';
+import { useToken } from '@dlt-components/hooks';
 
 const UserProfileView = (props) => {
     const { data } = props;
 
-    const { token } = theme.useToken();
+    const token = useToken();
 
     const { id, email, firstName, lastName, fullName, userName } = data;
 

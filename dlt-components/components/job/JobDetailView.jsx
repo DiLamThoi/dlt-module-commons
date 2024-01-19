@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 
 // Components
 import dayjs from 'dayjs';
-import { Button, Input, theme } from 'antd';
+import { Button, Input } from 'antd';
 import { CalendarOutlined, ClockCircleOutlined, DeleteOutlined, DollarOutlined, EnvironmentOutlined, EyeOutlined, FileDoneOutlined, FormOutlined, HeartOutlined, LineHeightOutlined, SendOutlined, TeamOutlined, UserSwitchOutlined } from '@ant-design/icons';
 import EmployerLogoContainer from '@dlt-components/components/employer/employerLogo/EmployerLogoContainer';
 import EmployerNameContainer from '@dlt-components/components/employer/employerName/EmployerNameContainer';
 import EmployerAddressContainer from '@dlt-components/components/employer/employerAddress/EmployerAddressContainer';
 import { noop } from 'lodash/util';
 import { JOB_DEGREE, JOB_EXPERIENCE, JOB_GENDER, JOB_METHOD } from './constants/jobConstants';
+import { useToken } from '@dlt-components/hooks';
 
 const JobField = (props) => {
-    const { token } = theme.useToken();
+    const token = useToken();
     const { title, value, Icon, fontSize = token.fontSizeLG, color = token.colorTextSecondary, valueColor } = props;
     return (
         <span style={{ color, fontSize }}>
@@ -132,7 +133,7 @@ const JobDetailView = (props) => {
         }
     }, [experienceId]);
 
-    const { token } = theme.useToken();
+    const token = useToken();
 
     const onClickFollowJobButton = useCallback((e) => {
         onFollow(id);

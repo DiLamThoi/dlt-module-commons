@@ -1,7 +1,8 @@
 import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Col, DatePicker, Form, Input, Row, Select, Space, Typography, theme } from 'antd';
-import { JOB_DEGREE, JOB_EXPERIENCE, JOB_FIELD, JOB_GENDER, JOB_METHOD } from '../constants/jobConstants';
+import { Button, Col, DatePicker, Form, Input, Row, Space, Typography } from 'antd';
+import { useToken } from '@dlt-components/hooks';
+import { JOB_FIELD } from '../constants/jobConstants';
 import viDatePickerLocate from 'antd/es/date-picker/locale/vi_VN';
 import { noop } from 'lodash/util';
 import JobMethodSelect from '../fields/JobMethodSelect';
@@ -19,7 +20,7 @@ const JobForm = (props) => {
     const { style, onFinish, onClose } = props;
 
     const [form] = Form.useForm();
-    const { token } = theme.useToken();
+    const token = useToken();
 
     const onResetForm = useCallback(() => {
         form.resetFields();

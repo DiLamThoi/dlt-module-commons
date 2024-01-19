@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Select, theme } from 'antd';
+import { Select } from 'antd';
 import { JOB_GENDER } from '../constants/jobConstants';
+import { useToken } from '@dlt-components/hooks';
 
 const JobGenderSelect = (props) => {
     const { jobId, ...other } = props;
-    const { token } = theme.useToken();
+    const token = useToken();
 
     const JobGenderOptions = useMemo(() => ([
         { value: JOB_GENDER.NONE, label: 'Không yêu cầu' },

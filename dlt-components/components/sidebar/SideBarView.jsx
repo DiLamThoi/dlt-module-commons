@@ -1,14 +1,15 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Button, List, theme } from 'antd';
+import { Button, List } from 'antd';
+import { useToken } from '@dlt-components/hooks';
 import { LogoutOutlined } from '@ant-design/icons';
 import { noop } from 'lodash/util';
 import { InfoBarInstant } from '@dlt-components/components/inforBar/global/infoBarGlobal';
 
 const SideBarView = (props) => {
     const { logout } = props;
-    const { token } = theme.useToken();
+    const token = useToken();
     const navigate = useNavigate();
     const location = useLocation();
     

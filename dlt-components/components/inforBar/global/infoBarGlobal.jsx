@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Subject } from 'rxjs';
-import { Button, Layout, theme } from 'antd';
+import { Button, Layout } from 'antd';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import JobContainer from '@dlt-components/components/job/JobContainer';
 import { CloseCircleOutlined } from '@ant-design/icons';
@@ -9,6 +9,7 @@ import { INFOBAR_TYPE } from '../constants/infoBarConstants';
 import EmployerContainer from '@dlt-components/components/employer/EmployerContainer';
 import { EMPLOYER_TYPE_VIEW } from '@dlt-components/components/employer/constants/employerConstants';
 import 'react-perfect-scrollbar/dist/css/styles.css';
+import { useToken } from '@dlt-components/hooks';
 const { Sider } = Layout;
 
 const subject = new Subject(null);
@@ -24,7 +25,7 @@ const showEmployerInfoBar = (employerId) => {
 const closeInfoBar = () => subject.next({ type: null });
 
 const InfoBarGlobal = () => {
-    const { token } = theme.useToken();
+    const token = useToken();
 
     const [type, setType] = useState(null);
     const [id, setId] = useState('');

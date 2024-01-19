@@ -2,21 +2,20 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import { Button, theme } from 'antd';
+import { Button } from 'antd';
 import { DeleteOutlined, HeartOutlined } from '@ant-design/icons';
 import EmployerLogoContainer from '@dlt-components/components/employer/employerLogo/EmployerLogoContainer';
-import EmployerNameContainer from '@dlt-components/components/employer/employerName/EmployerNameContainer';
 import EmployerAddressContainer from '@dlt-components/components/employer/employerAddress/EmployerAddressContainer';
 import { noop } from 'lodash/util';
 import { InfoBarInstant } from '@dlt-components/components/inforBar/global/infoBarGlobal';
 import { useGroupJobContext } from '@dlt-components/context/GroupJobContext';
-import { useHover } from '@uidotdev/usehooks';
+import { useHover, useToken } from '@dlt-components/hooks';
 
 const JobButtonView = (props) => {
     const { data, isOwn, onFollow, onDelete } = props;
     const { id, title, employerId, salaryUnit, salaryMin, salaryMax } = data;
 
-    const { token } = theme.useToken();
+    const token = useToken();
     const [ref, hovering] = useHover();
     const { selectedJobId } = useGroupJobContext();
 

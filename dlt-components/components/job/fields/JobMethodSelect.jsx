@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Select, theme } from 'antd';
+import { Select } from 'antd';
 import { JOB_METHOD } from '../constants/jobConstants';
+import { useToken } from '@dlt-components/hooks';
 
 const JobMethodSelect = (props) => {
     const { jobId, ...other } = props;
-    const { token } = theme.useToken();
+    const token = useToken();
 
     const JobMethodOptions = useMemo(() => ([
         { value: JOB_METHOD.FULLTIME_FIXED, label: 'Toàn thời gian cố định' },

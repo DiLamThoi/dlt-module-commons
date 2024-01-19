@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import CreateJobView from './CreateJobView';
 import { jobApiAction } from '@dlt-object-base/dlt-job/actions/jobActions';
-import useAccount from '@dlt-components/hooks/useAccount';
+import { useAccount } from '@dlt-components/hooks';
 import { JOB_FIELD } from '../constants/jobConstants';
 
 const CreateJobContainer = (props) => {

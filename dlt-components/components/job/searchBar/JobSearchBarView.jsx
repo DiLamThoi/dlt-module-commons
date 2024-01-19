@@ -1,30 +1,26 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import { theme, Input, Button } from 'antd';
+import { Input, Button } from 'antd';
 import { noop } from 'lodash/util';
 import JobDegreeSelect from '../fields/JobDegreeSelect';
 import JobGenderSelect from '../fields/JobGenderSelect';
 import JobMethodSelect from '../fields/JobMethodSelect';
 import JobExperienceSelect from '../fields/JobExperienceSelect';
+import { useElementSize, useToken } from '@dlt-components/hooks';
 
 const JobSearchBarView = (props) => {
     const { onSearch } = props;
-    const { token } = theme.useToken();
+    const token = useToken();
+    const [filterRef, { height }] = useElementSize();
 
     const [isShowFilter, setIsShowFilter] = useState(false);
-    const [filterHeight, setFilterHeight] = useState(0);
 
     const onClickFilterButton = useCallback((e) => {
         setIsShowFilter((prev) => !prev);
     }, []);
 
-    const onSetFilterRef = useCallback((ref) => {
-        if (ref) setFilterHeight(ref.offsetHeight);
-        else setFilterHeight(0);
-    }, []);
-
     return (
-        <div style={{ position: 'relative', marginBottom: filterHeight }}>
+        <div style={{ position: 'relative', marginBottom: height }}>
             <div
                 style={{
                     display: 'flex',
@@ -45,7 +41,7 @@ const JobSearchBarView = (props) => {
                 <div
                     style={{
                         position: 'absolute',
-                        bottom: - filterHeight + 10,
+                        bottom: - height + 10,
                         width: '100%',
                         display: 'flex',
                         alignItems: 'center',
@@ -55,7 +51,7 @@ const JobSearchBarView = (props) => {
                         boxShadow: token.boxShadowSecondary,
                         gap: 8,
                     }}
-                    ref={onSetFilterRef}
+                    ref={filterRef}
                 >
                     <span style={{ fontSize: token.fontSizeXS, color: token.colorTextDisabled, fontWeight: token.fontWeightStrong }}>
                         Bộ lọc:
