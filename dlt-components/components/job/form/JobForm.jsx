@@ -16,7 +16,7 @@ const FORM_ITEM_TYPE = {
 };
 
 const JobForm = (props) => {
-    const { style, onFinish, onFinishFailed, onClose } = props;
+    const { style, onFinish, onClose } = props;
 
     const [form] = Form.useForm();
     const { token } = theme.useToken();
@@ -33,6 +33,11 @@ const JobForm = (props) => {
         onFinish(jobData);
         onResetForm();
     }, [onFinish, onResetForm]);
+
+    const onFinishFailed = useCallback(({ values, errorFields, outOfDate }) => {
+        const firstErrorField = errorFields[0].name[0];
+        form.scrollToField(firstErrorField);
+    }, [form]);
 
     const horizontal = useMemo(() => ({
         labelCol: {
@@ -220,13 +225,11 @@ JobForm.propTypes = {
     style: PropTypes.object,
     onClose: PropTypes.func,
     onFinish: PropTypes.func,
-    onFinishFailed: PropTypes.func,
 };
 
 JobForm.defaultProps = {
     onClose: noop,
     onFinish: noop,
-    onFinishFailed: noop,
 };
 
 export default JobForm;

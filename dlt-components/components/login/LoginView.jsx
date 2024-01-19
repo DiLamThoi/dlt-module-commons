@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Typography, Form, Input, Divider, Select } from 'antd';
 import { LoginOutlined } from '@ant-design/icons';
@@ -7,6 +7,10 @@ import { ACCOUNT_ROLE } from '@dlt-components/constants/authConstants';
 
 const LoginView = (props) => {
     const { onLogin, navigateRegister } = props;
+
+    const [form] = Form.useForm();
+    const usernameRef = useRef(null);
+    const passwordRef = useRef(null);
 
     const RoleOptions = useMemo(() => ([
         {
@@ -23,7 +27,12 @@ const LoginView = (props) => {
         onLogin(values.username, values.password, values.role);
     }, [onLogin]);
 
-    const onFinishFailed = useCallback((errorInfo) => {}, []);
+    const onFinishFailed = useCallback(({ values, errorFields, outOfDate }) => {
+        const firstErrorField = errorFields[0].name[0];
+        form.scrollToField(firstErrorField);
+        if (firstErrorField === 'username' && usernameRef.current) usernameRef.current.focus();
+        if (firstErrorField === 'password' && passwordRef.current) passwordRef.current.focus();
+    }, [form]);
 
     return (
         <div
@@ -42,6 +51,7 @@ const LoginView = (props) => {
                 </Typography.Title>
             </div>
             <Form
+                form={form}
                 size="large"
                 style={{ padding: '0px 8px' }}
                 initialValues={{ role: ACCOUNT_ROLE.USER }}
@@ -55,15 +65,12 @@ const LoginView = (props) => {
                 >
                     <Select size="middle" options={RoleOptions} />
                 </Form.Item>
-                <Form.Item name="username">
-                    <Input placeholder="Tài khoản" />
+                <Form.Item name="username" rules={[{ required: true, message: '' }]}>
+                    <Input placeholder="Tài khoản" ref={usernameRef}/>
                 </Form.Item>
-                <Form.Item name="password">
-                    <Input.Password placeholder="Mật khẩu" />
+                <Form.Item name="password" rules={[{ required: true, message: '' }]}>
+                    <Input.Password placeholder="Mật khẩu" ref={passwordRef}/>
                 </Form.Item>
-                {/* <Form.Item name="remember">
-                    <Checkbox>Remember me</Checkbox>
-                </Form.Item> */}
                 <Form.Item>
                     <Button type="primary" htmlType="submit" style={{ width: '100%' }}>Đăng nhập</Button>
                 </Form.Item>
