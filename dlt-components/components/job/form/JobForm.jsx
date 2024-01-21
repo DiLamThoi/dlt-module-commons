@@ -17,7 +17,7 @@ const FORM_ITEM_TYPE = {
 };
 
 const JobForm = (props) => {
-    const { style, onFinish, onClose } = props;
+    const { onFinish, onClose } = props;
 
     const [form] = Form.useForm();
     const token = useToken();
@@ -223,7 +223,6 @@ const JobForm = (props) => {
 };
 
 JobForm.propTypes = {
-    style: PropTypes.object,
     onClose: PropTypes.func,
     onFinish: PropTypes.func,
 };

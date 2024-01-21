@@ -13,14 +13,14 @@ const ProfileScreen = () => {
                 style={{
                     display: 'flex',
                     alignItems: 'center',
-                    width: '100%',
                     height: 60,
                     color: token.colorTextBase,
                     fontWeight: token.fontWeightStrong,
                     fontSize: token.fontSizeHeading3,
+                    padding: token.paddingSM,
                 }}
             >
-                <span style={{ flex: 1 }}>
+                <span style={{ width: '100%' }}>
                     {isEmployer ? 'Hồ sơ nhà tuyển dụng' : 'Hồ sơ người tìm việc'}
                 </span>
             </div>

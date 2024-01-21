@@ -12,7 +12,6 @@ const EmployerAddressContainer = (props) => {
     return <EmployerAddressView address={employerAddress} {...other} />;
 };
 
-
 EmployerAddressContainer.propTypes = {
     employerId: PropTypes.string,
 };

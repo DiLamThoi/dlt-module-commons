@@ -16,7 +16,6 @@ function* doLoginSaga(action) {
     }
 }
 
-
 /** Listen Saga action */
 function* watchLoginSaga() {
     yield takeLatest(AUTH_ACTION.LOGIN, doLoginSaga);

@@ -27,7 +27,6 @@ const LoginContainer = () => {
         navigate('/register');
     }, [navigate]);
     
-
     return (
         <LoginView onLogin={onLogin} navigateRegister={navigateRegister} />
     );

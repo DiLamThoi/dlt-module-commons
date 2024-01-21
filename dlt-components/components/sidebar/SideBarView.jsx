@@ -6,6 +6,7 @@ import { useToken } from '@dlt-components/hooks';
 import { LogoutOutlined } from '@ant-design/icons';
 import { noop } from 'lodash/util';
 import { InfoBarInstant } from '@dlt-components/components/inforBar/global/infoBarGlobal';
+import WrapperScreen from '@dlt-components/screen/WrapperScreen';
 
 const SideBarView = (props) => {
     const { logout } = props;
@@ -19,7 +20,7 @@ const SideBarView = (props) => {
         { key: 'jobs', title: 'Danh sách công việc', path: '/jobs' },
         { key: 'employers', title: 'Nhà tuyển dụng', path: '/employers' },
         { key: 'profile', title: 'Hồ sơ', path: '/profile' },
-        // { key: 'settings', title: 'Cài đặt', path: '/settings' },
+        { key: 'settings', title: 'Cài đặt', path: '/settings' },
     ], []);
 
     useEffect(() => {
@@ -55,7 +56,7 @@ const SideBarView = (props) => {
     }, [onClickItem, selectedKey, token]);
 
     return (
-        <div style={{ padding: '24px 8px', display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: token.colorBgBase }}>
+        <WrapperScreen>
             <List size="large" itemLayout="horizontal" dataSource={menuItems} renderItem={renderItem} style={{ flex: 1 }} />
             <Button
                 type="text"
@@ -66,7 +67,7 @@ const SideBarView = (props) => {
             >
                 Đăng xuất
             </Button>
-        </div>
+        </WrapperScreen>
     );
 };
 

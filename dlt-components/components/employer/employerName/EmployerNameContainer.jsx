@@ -13,7 +13,6 @@ const EmployerNameContainer = (props) => {
     return <EmployerNameView name={employerName} {...other} />;
 };
 
-
 EmployerNameContainer.propTypes = {
     employerId: PropTypes.string,
 };

@@ -36,7 +36,6 @@ function* doDeleteJobSaga(action) {
     }
 }
 
-
 function* doFetchJobSaga(action) {
     const { userId } = action.payload;
     try {

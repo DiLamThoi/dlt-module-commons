@@ -24,7 +24,6 @@ function* watchFetchAnUserSaga() {
     yield takeEvery(USER_ACTION.FETCH_AN_USER, doGetAnUserSaga);
 }
 
-
 /** Export Sagas */
 const listSagas = [
     watchFetchAnUserSaga,

@@ -13,7 +13,6 @@ const EmployerLogoContainer = (props) => {
     return <EmployerLogoView logoUrl={employerLogo || LOGO_DEFAULT} {...other} />;
 };
 
-
 EmployerLogoContainer.propTypes = {
     employerId: PropTypes.string,
 };
