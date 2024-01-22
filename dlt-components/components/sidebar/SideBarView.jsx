@@ -6,7 +6,8 @@ import { useToken } from '@dlt-components/hooks';
 import { LogoutOutlined } from '@ant-design/icons';
 import { noop } from 'lodash/util';
 import { InfoBarInstant } from '@dlt-components/components/inforBar/global/infoBarGlobal';
-import WrapperScreen from '@dlt-components/screen/WrapperScreen';
+import SettingContainer from '@dlt-components/components/setting/SettingContainer';
+import ScrollbarBase from '@dlt-components/components/base/scrollbar/ScrollbarBase';
 
 const SideBarView = (props) => {
     const { logout } = props;
@@ -45,7 +46,7 @@ const SideBarView = (props) => {
                     width: '100%',
                     marginBottom: token.marginXS,
                     borderWidth: 0,
-                    backgroundColor: selected ? token.colorPrimaryBg : token.colorBgBase,
+                    backgroundColor: selected ? token.colorPrimaryBg : token.colorBgContainer,
                 }}
             >
                 <span style={{ width: '100%', display: 'flex', color: token.colorTextSecondary, fontWeight: token.fontWeightStrong }}>
@@ -56,8 +57,20 @@ const SideBarView = (props) => {
     }, [onClickItem, selectedKey, token]);
 
     return (
-        <WrapperScreen>
-            <List size="large" itemLayout="horizontal" dataSource={menuItems} renderItem={renderItem} style={{ flex: 1 }} />
+        <ScrollbarBase style={{ display: 'flex', flexDirection: 'column', padding: 8, height: '100vh' }}>
+            <div style={{ flex: 1 }}>
+                <SettingContainer
+                    collapsed
+                    style={{
+                        width: '100%',
+                        padding: token.paddingSM,
+                        marginBottom: token.marginXS,
+                        display: 'flex',
+                        justifyContent: 'end',
+                    }}
+                />
+                <List size="large" itemLayout="horizontal" dataSource={menuItems} renderItem={renderItem} style={{ flex: 1 }} />
+            </div>
             <Button
                 type="text"
                 onClick={logout}
@@ -67,7 +80,7 @@ const SideBarView = (props) => {
             >
                 Đăng xuất
             </Button>
-        </WrapperScreen>
+        </ScrollbarBase>
     );
 };
 

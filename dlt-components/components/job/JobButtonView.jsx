@@ -49,7 +49,7 @@ const JobButtonView = (props) => {
                 paddingTop: token.paddingContentVerticalSM,
                 paddingBottom: token.paddingContentVerticalSM,
                 borderRadius: token.borderRadiusLG,
-                backgroundColor: (id === selectedJobId || hovering) ? token.colorBgTextHover : token.colorBgBase,
+                backgroundColor: (id === selectedJobId || hovering) ? token.colorBgTextActive : token.colorBgContainer,
             }}
         >
             <div style={{ display: hovering ? 'block' : 'none', position: 'absolute', zIndex: 1, right: 10 }}>

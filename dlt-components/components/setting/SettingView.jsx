@@ -17,7 +17,7 @@ const SettingView = (props) => {
                     width: '100%',
                     flexDirection: 'column',
                     gap: 8,
-                    backgroundColor: token.colorBgBase,
+                    backgroundColor: token.colorBgContainer,
                     boxShadow: token.boxShadowSecondary,
                     borderRadius: token.borderRadius,
                     padding: token.paddingSM,

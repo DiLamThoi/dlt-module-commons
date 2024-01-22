@@ -37,7 +37,7 @@ const EmployerButtonView = (props) => {
                 paddingTop: token.paddingContentVerticalSM,
                 paddingBottom: token.paddingContentVerticalSM,
                 borderRadius: token.borderRadiusLG,
-                backgroundColor: (id === selectedEmployerId || hovering) ? token.colorBgTextHover : token.colorBgBase,
+                backgroundColor: (id === selectedEmployerId || hovering) ? token.colorBgTextActive : token.colorBgContainer,
             }}
         >
             <div style={{ width: 80 }}>

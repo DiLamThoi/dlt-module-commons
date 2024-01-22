@@ -1,4 +1,4 @@
-import { useAntdContext } from '@dlt-components/context/antd/AntdContext';
+import { useAntdContext } from '@dlt-components/context/AntdContext';
 
 const useCompactTheme = () => {
     const context = useAntdContext();

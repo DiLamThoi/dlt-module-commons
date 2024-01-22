@@ -1,9 +1,9 @@
 import React, { createContext, useCallback, useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { THEME_STORAGE_KEY } from './constant/antdConstants';
 import { ConfigProvider, theme as themeAntd } from 'antd';
 import { useLocalStorage } from 'usehooks-ts';
 import { HappyProvider } from '@ant-design/happy-work-theme';
+import { THEME_STORAGE_KEY } from '@dlt-components/constants/storageConstants';
 
 // CONTEXT
 const AntdContext = createContext();

@@ -151,9 +151,8 @@ const JobDetailView = (props) => {
                 width: '100%',
                 flexDirection: 'column',
                 gap: 8,
-                backgroundColor: token.colorBgBase,
+                backgroundColor: token.colorBgContainer,
                 boxShadow: token.boxShadow,
-                borderRadius: token.borderRadius,
                 padding: token.paddingSM,
             }}
         >
@@ -165,16 +164,15 @@ const JobDetailView = (props) => {
     ));
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: token.paddingSM, ...style }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4, ...style }}>
             <div
                 style={{
                     display: 'flex',
                     width: '100%',
                     alignItems: 'center',
                     gap: 16,
-                    backgroundColor: token.colorBgBase,
+                    backgroundColor: token.colorBgContainer,
                     boxShadow: token.boxShadow,
-                    borderRadius: token.borderRadius,
                     padding: token.paddingSM,
                 }}
             >

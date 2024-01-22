@@ -67,7 +67,7 @@ const InfoBarGlobal = () => {
     return type && (
         <Sider className="dlt-sider" theme="light" width={800}>
             <PerfectScrollbar>
-                <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: token.colorBgBase }}>
+                <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
                     <div
                         style={{
                             position: 'sticky ',
@@ -75,11 +75,10 @@ const InfoBarGlobal = () => {
                             alignItems: 'center',
                             width: '100%',
                             height: 60,
-                            backgroundColor: token.colorBgBase,
+                            backgroundColor: token.colorBgContainer,
                             boxShadow: token.boxShadow,
                             padding: token.paddingXS,
-                            borderRadius: token.borderRadius,
-                            marginBottom: token.marginXS,
+                            marginBottom: token.marginSM,
                             color: token.colorTextBase,
                             fontWeight: token.fontWeightStrong,
                             fontSize: token.fontSizeHeading3,

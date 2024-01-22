@@ -5,8 +5,8 @@ export const THEME_STORAGE_KEY = {
     COMPACT_THEME: 'dlt.setting.compactTheme',
 };
 
-const antdConstants = {
+const storageConstants = {
     THEME_STORAGE_KEY,
 };
 
-export default antdConstants;
+export default storageConstants;
