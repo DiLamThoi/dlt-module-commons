@@ -5,9 +5,12 @@ import UserForm from './components/UserForm';
 import EmployerForm from './components/EmployerForm';
 import { noop } from 'lodash/util';
 import { ACCOUNT_ROLE } from '@dlt-components/constants/authConstants';
+import { useToken } from '@dlt-components/hooks';
 
 const RegisterView = (props) => {
     const { onRegisterUser, onRegisterEmployer, navigateLogin } = props;
+
+    const token = useToken();
 
     const [type, setType] = useState(ACCOUNT_ROLE.USER);
 
@@ -40,19 +43,21 @@ const RegisterView = (props) => {
     return (
         <div
             style={{
-                backgroundColor: '#fff',
+                backgroundColor: token.colorBgContainer,
                 minWidth: 400,
-                borderRadius: 8,
-                paddingBottom: 14,
-                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1)',
+                borderRadius: token.borderRadiusSM,
+                padding: token.paddingSM,
+                boxShadow: token.boxShadowSecondary,
             }}
         >
             <div style={{ textAlign: 'center' }}>
-                <Typography.Title level={3}>Tạo tài khoản mới</Typography.Title>
+                <Typography.Title level={3} style={{ color: token.colorTextHeading }}>
+                    Tạo tài khoản mới
+                </Typography.Title>
             </div>
-            <div style={{ padding: '0px 8px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <div style={{ display: 'flex', justifyContent: 'start', marginBottom: 24, gap: 8 }}>
-                    <span style={{ display: 'flex', textAlign: 'start', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <div style={{ display: 'flex', justifyContent: 'start', marginBottom: token.marginLG, gap: 8 }}>
+                    <span style={{ display: 'flex', textAlign: 'start', alignItems: 'center', color: token.colorTextLabel }}>
                         Bạn là:
                     </span>
                     <Select size="middle" options={RoleOptions} value={type} onChange={onTypeChange} style={{ width: 150 }}/>

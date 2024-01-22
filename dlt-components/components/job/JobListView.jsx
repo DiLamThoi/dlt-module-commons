@@ -16,7 +16,9 @@ const JobListView = (props) => {
 
     return (
         <div style={{ padding: token.padding, display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <JobSearchBarContainer />
+            <div style={{ position: 'sticky', top: 0, zIndex: 1 }}>
+                <JobSearchBarContainer />
+            </div>
             {jobIds.map((jobId) => (
                 <JobContainer key={jobId} jobId={jobId} typeView={JOB_TYPE_VIEW.BUTTON}/>
             ))}

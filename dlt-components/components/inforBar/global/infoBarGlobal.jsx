@@ -10,6 +10,7 @@ import EmployerContainer from '@dlt-components/components/employer/EmployerConta
 import { EMPLOYER_TYPE_VIEW } from '@dlt-components/components/employer/constants/employerConstants';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import { useToken } from '@dlt-components/hooks';
+import { Resizable } from 'react-resizable';
 const { Sider } = Layout;
 
 const subject = new Subject(null);
@@ -65,12 +66,14 @@ const InfoBarGlobal = () => {
     };
 
     return type && (
-        <Sider className="dlt-sider" theme="light" width={800}>
+        <Sider width={800} theme="light">
             <PerfectScrollbar>
                 <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
                     <div
                         style={{
-                            position: 'sticky ',
+                            position: 'sticky',
+                            top: 0,
+                            zIndex: 1,
                             display: 'flex',
                             alignItems: 'center',
                             width: '100%',

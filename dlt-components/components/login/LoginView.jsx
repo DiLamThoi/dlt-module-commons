@@ -4,10 +4,12 @@ import { Button, Typography, Form, Input, Divider, Select } from 'antd';
 import { LoginOutlined } from '@ant-design/icons';
 import { noop } from 'lodash/util';
 import { ACCOUNT_ROLE } from '@dlt-components/constants/authConstants';
+import { useToken } from '@dlt-components/hooks';
 
 const LoginView = (props) => {
     const { onLogin, navigateRegister } = props;
 
+    const token = useToken();
     const [form] = Form.useForm();
     const usernameRef = useRef(null);
     const passwordRef = useRef(null);
@@ -37,23 +39,22 @@ const LoginView = (props) => {
     return (
         <div
             style={{
-                backgroundColor: '#fff',
+                backgroundColor: token.colorBgContainer,
                 minWidth: 400,
-                borderRadius: 8,
-                paddingBottom: 14,
-                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1)',
+                borderRadius: token.borderRadiusSM,
+                padding: token.paddingSM,
+                boxShadow: token.boxShadowSecondary,
             }}
         >
             <div style={{ textAlign: 'center' }}>
-                <Typography.Title level={3} style={{ color: '#42b72a' }}>
-                    <LoginOutlined style={{ marginRight: 8 }} />
+                <Typography.Title level={3} style={{ color: token.blue }}>
+                    <LoginOutlined style={{ marginRight: token.marginXS }} />
                     Đăng nhập
                 </Typography.Title>
             </div>
             <Form
                 form={form}
                 size="large"
-                style={{ padding: '0px 8px' }}
                 initialValues={{ role: ACCOUNT_ROLE.USER }}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
@@ -76,7 +77,7 @@ const LoginView = (props) => {
                 </Form.Item>
                 <Divider />
                 <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button type="primary" style={{ backgroundColor: '#42b72a' }} onClick={navigateRegister}>
+                    <Button type="primary" style={{ backgroundColor: token.green }} onClick={navigateRegister}>
                         Tạo tài khoản mới
                     </Button>
                 </Form.Item>
