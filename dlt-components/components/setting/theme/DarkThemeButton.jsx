@@ -7,22 +7,13 @@ const DarkThemeButton = () => {
     const token = useToken();
     const { isDark, toggleDark } = useDarkTheme();
 
-    // return (
-    //     <Button
-    //         type="text"
-    //         shape="circle"
-    //         icon={<PartlySunny color={token.yellow} />}
-    //         onClick={toggleDark}
-    //     />
-    // );
-
     return (
         <Tooltip title={`Chế độ tối: ${isDark ? 'Bật' : 'Tắt'}`}>
             <Switch
                 value={isDark}
                 onChange={toggleDark}
-                checkedChildren={<Moon color={token.yellow} width={50} height={50} />}
-                unCheckedChildren={<PartlySunny color={token.yellow} width={50} height={50} />}
+                checkedChildren={<Moon color={token.yellow} width="10px" height="10px" />}
+                unCheckedChildren={<PartlySunny color={token.yellow} width="10px" height="10px" />}
             />
         </Tooltip>
     );

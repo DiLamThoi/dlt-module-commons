@@ -7,7 +7,7 @@ import { ACCOUNT_ROLE } from '@dlt-components/constants/authConstants';
 import { useToken } from '@dlt-components/hooks';
 
 const LoginView = (props) => {
-    const { onLogin, navigateRegister } = props;
+    const { onLogin, loginState, navigateRegister } = props;
 
     const token = useToken();
     const [form] = Form.useForm();
@@ -15,14 +15,8 @@ const LoginView = (props) => {
     const passwordRef = useRef(null);
 
     const RoleOptions = useMemo(() => ([
-        {
-            value: ACCOUNT_ROLE.USER,
-            label: 'Người tìm việc',
-        },
-        {
-            value: ACCOUNT_ROLE.EMPLOYER,
-            label: 'Nhà tuyển dụng',
-        },
+        { value: ACCOUNT_ROLE.USER, label: 'Người tìm việc' },
+        { value: ACCOUNT_ROLE.EMPLOYER, label: 'Nhà tuyển dụng' },
     ]), []);
 
     const onFinish = useCallback((values) => {
@@ -88,11 +82,16 @@ const LoginView = (props) => {
 
 LoginView.propTypes = {
     onLogin: PropTypes.func,
+    loginState: PropTypes.shape({
+        loading: PropTypes.bool,
+        error: PropTypes.any,
+    }),
     navigateRegister: PropTypes.func,
 };
 
 LoginView.defaultProps = {
     onLogin: noop,
+    loginState: { loading: false, error: null },
     navigateRegister: noop,
 };
 

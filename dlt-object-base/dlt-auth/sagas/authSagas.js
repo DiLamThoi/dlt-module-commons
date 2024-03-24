@@ -7,12 +7,11 @@ import { AUTH_ACTION } from '../actions/authActions';
 /** Handle Saga action */
 function* doLoginSaga(action) {
     const { userName, password, role, handleAfterFetch } = action.payload;
-    try {
-        const response = yield call(axios.post, `${DLT_DOMAIN}/login`, { userName, password, role });
-        console.log('aa');
-        yield call(handleAfterFetch.onSuccess, response);
-    } catch (error) {
-        yield call(handleAfterFetch.onError, error);
+    const response = yield call(axios.post, `${DLT_DOMAIN}/login`, { data: { userName, password, role } });
+    if (response.status === 200) {
+        handleAfterFetch.onSuccess(response);
+    } else {
+        handleAfterFetch.onError(response);
     }
 }
 
