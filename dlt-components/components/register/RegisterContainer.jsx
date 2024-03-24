@@ -1,35 +1,35 @@
 import React, { useCallback } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSignIn } from 'react-auth-kit';
 import RegisterView from './RegisterView';
-import Cookies from 'js-cookie';
-import { DLT_DOMAIN } from '@dlt-object-base/dlt-config/apiConfig';
 import { ACCOUNT_ROLE } from '@dlt-components/constants/authConstants';
+import { useDispatch } from 'react-redux';
+import { authApiActions } from '@dlt-object-base/dlt-auth/actions/authActions';
 
 const RegisterContainer = () => {
     const signIn = useSignIn();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const navigateLogin = useCallback(() => {
         navigate('/login');
     }, [navigate]);
 
     const onRegister = useCallback((role, data) => {
-        axios.post(`${DLT_DOMAIN}/register`, { role, data }).then((res) => {
-            const { token, meId } = res.data;
-            // Lưu thông tin vào cookie
-            Cookies.set('meId', meId);
-            Cookies.set('role', role);
-            signIn({
-                token,
-                expiresIn: 3600,
-                tokenType: 'Bearer',
-                authState: { meId, role },
-            });
-            navigateLogin();
-        }).catch((err) => {});
-    }, [navigateLogin, signIn]);
+        dispatch(authApiActions.register(role, data, {
+            onSuccess: (res) => {
+                const { token, meId } = res.data;
+                signIn({
+                    token,
+                    expiresIn: 3600,
+                    tokenType: 'Bearer',
+                    authState: { meId, role },
+                });
+                navigateLogin();
+            },
+            onError: (err) => {},
+        }));
+    }, [dispatch, navigateLogin, signIn]);
 
     const onRegisterUser = useCallback(({ firstName, lastName, email, userName, password }) => {
         const data = { firstName, lastName, email, userName, password };

@@ -14,12 +14,17 @@ const LoginContainer = () => {
     const signIn = useSignIn();
     const navigate = useNavigate();
 
+    const navigateRegister = useCallback(() => {
+        navigate('/register');
+    }, [navigate]);
+
     const onLogin = useCallback((userName, password, role = ACCOUNT_ROLE.USER) => {
         setLoginState({ loading: true, error: null });
-        dispatch(authApiActions.login(userName, password, role, {
+        const data = { userName, password };
+        dispatch(authApiActions.login(data, role, {
             onSuccess: (res) => {
                 setLoginState({ loading: false, error: null });
-                const { token, meId } = res.data; 
+                const { token, meId } = res.data;
                 signIn({
                     token,
                     expiresIn: 3600,
@@ -32,10 +37,6 @@ const LoginContainer = () => {
             },
         }));
     }, [dispatch, signIn]);
-
-    const navigateRegister = useCallback(() => {
-        navigate('/register');
-    }, [navigate]);
     
     return (
         <LoginView onLogin={onLogin} loginState={loginState} navigateRegister={navigateRegister} />

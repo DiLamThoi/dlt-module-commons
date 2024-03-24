@@ -11,8 +11,8 @@ const ThemeSwitch = () => {
         <Switch
             value={isDark}
             onChange={toggleDark}
-            checkedChildren={<Moon color={token.yellow} width={100} height={100} />}
-            unCheckedChildren={<PartlySunny color={token.yellow} width={100} height={100} />}
+            checkedChildren={<Moon color={token.yellow} width="10px" height="10px" />}
+            unCheckedChildren={<PartlySunny color={token.yellow} width="10px" height="10px" />}
         />
     );
 };

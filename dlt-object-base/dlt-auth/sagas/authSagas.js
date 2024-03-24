@@ -6,12 +6,30 @@ import { AUTH_ACTION } from '../actions/authActions';
 
 /** Handle Saga action */
 function* doLoginSaga(action) {
-    const { userName, password, role, handleAfterFetch } = action.payload;
-    const response = yield call(axios.post, `${DLT_DOMAIN}/login`, { data: { userName, password, role } });
+    const { data, role, handleAfterFetch } = action.payload;
+    const response = yield call(axios.post, `${DLT_DOMAIN}/login`, { data, role });
     if (response.status === 200) {
-        handleAfterFetch.onSuccess(response);
+        if (typeof handleAfterFetch.onSuccess === 'function') {
+            yield call(handleAfterFetch.onSuccess, response);
+        }
     } else {
-        handleAfterFetch.onError(response);
+        if (typeof handleAfterFetch.onError === 'function') {
+            yield call(handleAfterFetch.onError, response);
+        }
+    }
+}
+
+function* doRegisterSaga(action) {
+    const { data, role, handleAfterFetch } = action.payload;
+    const response = yield call(axios.post, `${DLT_DOMAIN}/register`, { data, role });
+    if (response.status === 200) {
+        if (typeof handleAfterFetch.onSuccess === 'function') {
+            yield call(handleAfterFetch.onSuccess, response);
+        }
+    } else {
+        if (typeof handleAfterFetch.onError === 'function') {
+            yield call(handleAfterFetch.onError, response);
+        }
     }
 }
 
@@ -20,9 +38,14 @@ function* watchLoginSaga() {
     yield takeLatest(AUTH_ACTION.LOGIN, doLoginSaga);
 }
 
+function* watchRegisterSaga() {
+    yield takeLatest(AUTH_ACTION.REGISTER, doRegisterSaga);
+}
+
 /** Export Sagas */
 const listSagas = [
     watchLoginSaga,
+    watchRegisterSaga,
 ];
 
 const authSagas = function* authSagas() {
